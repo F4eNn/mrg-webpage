@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "lint-staged": "lint-staged --config lint-staged.js",
+    "prettier": "prettier src -check",
     "husky-install": "husky install"
   },
   "dependencies": {
