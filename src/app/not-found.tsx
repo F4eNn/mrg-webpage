@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 
-import { navigationPaths } from '@/components/constants/navigation';
+import { navigationPaths } from '@/constants/navigation';
 import { LinkButton } from '@/components/ui/LinkButton';
 
 export const metadata: Metadata = {
