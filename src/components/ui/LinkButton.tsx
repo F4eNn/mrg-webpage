@@ -8,7 +8,7 @@ type LinkButtonProps = Pick<LinkProps, 'href'> &
 
 export const LinkButton = ({ title, className, ...rest }: LinkButtonProps) => {
    return (
-      <Link {...rest} className={cn('rounded-lg p-3 transition-colors duration-300 ', className)}>
+      <Link {...rest} className={cn('colors-300 rounded-lg p-3 ', className)}>
          {title}
       </Link>
    );
