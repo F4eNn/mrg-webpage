@@ -5,48 +5,49 @@ type NavItem = {
 
 export const navigationPaths = {
 	home: {
-		label: 'Przejdź do strony głównej',
+		label: 'Home',
 		path: '/',
-	},
-	cooperation: {
-		label: 'Zobacz z kim współpracujemy',
-		path: '/współpraca',
-	},
-	aboutUs: {
-		label: 'O nas',
-		path: '/o-nas',
 	},
     aboutPlatform: {
         label: 'O platformie',
-        path: '/o-platformie'
+        path: '/o-platformie',
     },
-	partners: {
-		label: 'Nasi partnerzy',
-		path: '/partnerzy',
+    aboutUs: {
+        label: 'O nas',
+        path: '/o-nas',
+    },
+	cooperation: {
+		label: 'Współpraca',
+		path: '/wspolpraca',
 	},
-	gallery: {
-		label: 'Nasza galeria zdjęć',
-		path: '/galeria',
+    partners: {
+        label: 'Partnerzy',
+        path: '/partnerzy',
+    },
+    gallery: {
+        label: 'Galeria',
+        path: '/galeria',
+    },
+    contact: {
+        label: 'Kontakt',
+        path: '/kontakt',
+    },
+	events: {
+		label: 'Wydarzenia',
+		path: '/wydarzenia',
 	},
-	contact: {
-		label: 'Skontaktuj się z nami',
-		path: '/kontakt',
+	projects: {
+		label: 'Nasze projekty',
+		path: '/projekty',
 	},
-    events: {
-        label: 'Wydarzenia',
-        path: '/wydarzenia'
-    },
-    projects: {
-        label: 'Nasze projekty',
-        path: '/projekty'
-    },
-    filmSchool: {
-        label: 'Szkoła filmowa',
-        path: '/szkola-filmowa'
-    },
-    developmentGroups: {
-        label: 'Grupy rozwojowe',
-        path: '/grupy-rozwojowe'
-    }
-
+	filmSchool: {
+		label: 'Szkoła filmowa',
+		path: '/szkola-filmowa',
+	},
+	developmentGroups: {
+		label: 'Grupy rozwojowe',
+		path: '/grupy-rozwojowe',
+	},
 } as const satisfies Record<PropertyKey, NavItem>;
+
+export const navigationArray = Object.values(navigationPaths).filter(items => items.path !== '/');
