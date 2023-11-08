@@ -10,3 +10,8 @@ export const dropdownAnimation: MotionProps = {
    animate: { opacity: 1 },
    exit: { opacity: 0 },
 };
+export const mobileMenuAnimation: MotionProps = {
+   initial: { height: 0, opacity: 0 },
+   animate: { height: '100%', opacity: 1 },
+   exit: { height: 0, opacity: 0 },
+};
