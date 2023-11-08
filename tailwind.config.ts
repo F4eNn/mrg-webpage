@@ -7,7 +7,8 @@ const config: Config = {
 		extend: {
 			colors: {
 				'metalic': '#9ca3af',
-				'lightGrey': '#5a5867'
+				'lightGrey': '#5a5867',
+				'lightBlue': '#bfdbfe'
 			}
 		},
 	},
