@@ -13,7 +13,7 @@ export const DropdownMenu = () => {
    const [isOpen, setIsOpen] = useState(false);
    return (
       <DropdownMenuRadix.Root onOpenChange={setIsOpen} open={isOpen}>
-         <DropdownMenuRadix.Trigger className='colors-300 group flex rotate-0 items-center  px-4 py-1.5 hover:text-metalic    lg:py-2.5 xl:px-9'>
+         <DropdownMenuRadix.Trigger className='colors-300 group flex rotate-0 items-center px-4 py-1.5 hover:text-metalic lg:py-2.5 xl:px-9'>
             <span className=''> Dowiedz się więcej</span>
             <BiChevronDown size='2rem' className={`transition-all duration-300 group-data-[state=open]:rotate-180`} />
          </DropdownMenuRadix.Trigger>
@@ -45,7 +45,7 @@ const Item = ({ pathname }: { pathname: string }) => {
                <DropdownMenuRadix.Item
                   key={path}
                   className={`${
-                     pathname === path ? 'font-[500]' : 'hover:bg-blue-200'
+                     pathname === path ? 'font-[500]' : 'hover:bg-lightBlue'
                   } colors-300 flex w-full rounded-md  hover:focus:outline-none`}
                   asChild
                >
