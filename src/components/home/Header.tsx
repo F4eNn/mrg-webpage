@@ -2,10 +2,8 @@
 import React from 'react';
 import { usePathname } from 'next/navigation';
 
-import { DesktopNav } from './DesktopNav';
 import { Backdrop } from '../ui/Backdrop';
 import { navigationArray } from '../../constants/navigation';
-import { MobileNav } from './MobileNav';
 
 export const Header = () => {
    const pathname = usePathname();
@@ -24,10 +22,6 @@ export const Header = () => {
             </video>
             <Backdrop />
          </div>
-         <nav>
-            <DesktopNav />
-            <MobileNav />
-         </nav>
       </header>
    );
 };

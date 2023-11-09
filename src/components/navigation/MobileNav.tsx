@@ -1,3 +1,4 @@
+'use client';
 import React, { useState } from 'react';
 import Hamburger from 'hamburger-react';
 import Link from 'next/link';
@@ -22,11 +23,11 @@ export const MobileNav = () => {
    };
    return (
       <>
-         <div className='p-4'>
+         <div className=' md:hidden'>
             <button
                aria-label={open ? 'Zamknij nawigacje' : 'Otwórz nawigacje'}
                aria-expanded={open}
-               className='fixed right-4 z-50 rounded-full bg-black p-[11px] text-white md:hidden'
+               className='fixed right-4 z-50 mt-4 rounded-full bg-black p-[11px] text-white md:hidden'
             >
                <Hamburger rounded toggle={handleToggleMenu} toggled={open} />
             </button>
@@ -35,7 +36,7 @@ export const MobileNav = () => {
             {open && (
                <motion.ul
                   {...mobileMenuAnimation}
-                  className='fixed inset-0 z-20 flex w-full flex-col overflow-x-hidden  bg-white pb-10 pt-32 md:hidden '
+                  className='fixed inset-0 z-20  flex w-full flex-col overflow-x-hidden  bg-white pb-10 pt-32 md:hidden '
                >
                   {navigationArray.map(({ label, path }) => {
                      return (
@@ -47,7 +48,7 @@ export const MobileNav = () => {
                               } `}
                               href={path}
                            >
-                              {pathname === path && <div className='bg-yellow h-2 w-2 rounded-full' />}
+                              {pathname === path && <div className='h-2 w-2 rounded-full bg-yellow' />}
                               {label}
                            </Link>
                         </li>
