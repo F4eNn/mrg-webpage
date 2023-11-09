@@ -10,6 +10,12 @@ const config: Config = {
             lightBlue: '#bfdbfe',
             yellow: '#facc15',
          },
+         screens: {
+            phones: '400px',
+         },
+         fontSize: {
+            xxs: '0.625rem',
+         },
       },
    },
    plugins: [],
