@@ -1,5 +1,12 @@
+import { Header } from '@/components/home/Header';
+
 export default function Home() {
-	return <main className=''>
-		<p>MAIN</p>
-	</main>;
+   return (
+      <>
+         <Header />
+         <main className='h-[2000px]'>
+            <p>MAIN</p>
+         </main>
+      </>
+   );
 }

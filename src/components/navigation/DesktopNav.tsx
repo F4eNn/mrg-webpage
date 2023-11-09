@@ -1,3 +1,4 @@
+'use client';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
@@ -25,7 +26,7 @@ export const DesktopNav = () => {
    }, []);
    return (
       <div
-         className={`fixed left-0 right-0 z-10  hidden md:block ${
+         className={`fixed left-0 right-0 z-20  hidden md:block ${
             isScroll ? 'bg-black py-2' : 'pt-4'
          }  transition-all duration-500 `}
       >
@@ -39,7 +40,7 @@ export const DesktopNav = () => {
                         <Link
                            className={` ${
                               pathname === path ? '' : 'hover:text-metalic'
-                           } colors-300 px-4 py-3 lg:px-6   xl:px-6`}
+                           } colors-300 px-4 py-2 lg:px-6 lg:py-3   xl:px-6`}
                            href={path}
                         >
                            {label}
