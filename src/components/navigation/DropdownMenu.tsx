@@ -27,7 +27,7 @@ export const DropdownMenu = () => {
                   <DropdownMenuRadix.Content
                      onCloseAutoFocus={e => e.preventDefault()}
                      asChild
-                     className='z-20 flex w-[225px]  flex-col items-start   justify-start rounded-md  bg-white p-1.5 shadow-md'
+                     className='z-50 flex w-[225px]  flex-col items-start   justify-start rounded-md  bg-white p-1.5 shadow-md'
                   >
                      <motion.div {...dropdownAnimation}>
                         <Item pathname={pathname} />

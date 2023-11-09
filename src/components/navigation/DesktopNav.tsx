@@ -15,7 +15,7 @@ export const DesktopNav = () => {
    const [isScroll, setIsScroll] = useState(false);
    useEffect(() => {
       const handleScroll = () => {
-         if (window.scrollY >= 150) {
+         if (window.scrollY >= 50) {
             setIsScroll(true);
          } else {
             setIsScroll(false);
@@ -26,7 +26,7 @@ export const DesktopNav = () => {
    }, []);
    return (
       <div
-         className={`fixed left-0 right-0 z-20  hidden md:block ${
+         className={`fixed left-0 right-0 z-50  hidden md:block ${
             isScroll ? 'bg-black py-2' : 'pt-4'
          }  transition-all duration-500 `}
       >

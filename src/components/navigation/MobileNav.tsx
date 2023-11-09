@@ -36,7 +36,7 @@ export const MobileNav = () => {
             {open && (
                <motion.ul
                   {...mobileMenuAnimation}
-                  className='fixed inset-0 z-20  flex w-full flex-col overflow-x-hidden  bg-white pb-10 pt-32 md:hidden '
+                  className='fixed inset-0 z-40  flex w-full flex-col overflow-x-hidden  bg-white pb-10 pt-32 md:hidden '
                >
                   {navigationArray.map(({ label, path }) => {
                      return (
