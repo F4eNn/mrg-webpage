@@ -17,11 +17,9 @@ const NotFound = () => {
             Przepraszamy, nie znaleziono strony z podanym adresem <br /> Wróc do strony głównej.
          </p>
 
-         <LinkButton
-            className='bg-gray-600 px-10 text-white hover:bg-gray-700'
-            href={navigationPaths.home.path}
-            title='Home'
-         />
+         <LinkButton className='bg-gray-600 px-10 text-white hover:bg-gray-700' href={navigationPaths.home.path}>
+            Home
+         </LinkButton>
       </div>
    );
 };
