@@ -27,7 +27,7 @@ export const DesktopNav = () => {
    return (
       <div
          className={`fixed left-0 right-0 z-50  hidden md:block ${
-            isScroll ? 'bg-black py-2' : 'pt-4'
+            isScroll ? 'bg-lightblack py-2' : 'pt-4'
          }  transition-all duration-500 `}
       >
          <Wrapper>

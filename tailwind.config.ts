@@ -9,6 +9,8 @@ const config: Config = {
             lightGrey: '#5a5867',
             lightBlue: '#bfdbfe',
             yellow: '#facc15',
+            white: '#f8f8f8',
+            lightblack: '#141414',
          },
          screens: {
             phones: '400px',
