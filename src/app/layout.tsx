@@ -5,7 +5,7 @@ import { Roboto } from 'next/font/google';
 
 import { DesktopNav } from '@/components/navigation/DesktopNav';
 import { MobileNav } from '@/components/navigation/MobileNav';
-
+import { Footer } from '@/components/footer/Footer';
 
 const roboto = Roboto({ subsets: ['latin'], weight: ['100', '300', '400', '500', '700'] });
 
@@ -23,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                <MobileNav />
             </nav>
             {children}
+            <Footer />
          </body>
       </html>
    );

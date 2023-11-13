@@ -7,3 +7,17 @@
       @apply transition-colors duration-300;
    }
 }
+.custom-shape {
+   position: absolute;
+   top: 0;
+   left: -10px;
+   width: 110%;
+   overflow: hidden;
+}
+
+.custom-shape svg {
+   position: relative;
+   display: block;
+   width: 110%;
+   height: 117px;
+}
