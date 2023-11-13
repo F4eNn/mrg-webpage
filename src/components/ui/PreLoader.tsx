@@ -16,7 +16,7 @@ export const PreLoader = () => {
    return (
       <>
          <div ref={loader} className='fixed inset-0 z-[9999] flex items-center justify-center border-none bg-[#f8f8f8]'>
-            <Image src='/spinner.png' alt='Loading...' width={100} height={100} className='border-none animate-spin' />
+            <Image src='/assets/spinner.png' alt='Loading...' width={100} height={100} className='border-none animate-spin' />
          </div>
       </>
    );
