@@ -23,7 +23,7 @@ export const Header = () => {
                muted
                className='absolute inset-0 -z-10 h-full w-full bg-blue-500/70 object-cover'
             >
-               <source src='./hero.mp4' />
+               <source src='./assets/hero.mp4' />
             </video>
             <Backdrop />
          </div>
@@ -39,7 +39,7 @@ export const Header = () => {
                <div className='right-3 top-10 lg:absolute'>
                   <div className='relative h-[125px] w-[125px] self-start rounded-full phones:h-[150px] phones:w-[150px] md:h-[225px] md:w-[225px] xl:h-[375px] xl:w-[375px]'>
                      <Image
-                        src='/logo.png'
+                        src='/assets/logo.png'
                         alt='Logo młodzieżowej platformy informacyjno rozwojowej'
                         fill
                         className='rounded-full'
