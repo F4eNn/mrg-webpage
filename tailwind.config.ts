@@ -8,12 +8,12 @@ const config: Config = {
             metalic: '#9ca3af',
             lightGrey: '#5a5867',
             lightBlue: '#bfdbfe',
-            yellow: '#facc15',
+            yellow: '#facc13',
             white: '#f8f8f8',
             lightblack: '#141414',
          },
          screens: {
-            phones: '400px',
+            phones: '375px',
          },
          fontSize: {
             xxs: '0.625rem',
