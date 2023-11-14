@@ -23,7 +23,7 @@ export const Header = () => {
                muted
                className='absolute inset-0 -z-10 h-full w-full bg-blue-500/70 object-cover'
             >
-               <source src='./assets/hero.mp4' />
+               <source src='./assets/hero.mp4' type='video/mp4' />
             </video>
             <Backdrop />
          </div>

@@ -7,5 +7,5 @@ type WrapperProps = PropsWithChildren & {
 };
 
 export const Wrapper = ({ children, className }: WrapperProps) => {
-   return <div className={cn('relative z-[20] mx-auto w-full max-w-[1440px] px-3', className)}>{children}</div>;
+   return <div className={cn('relative z-[20] mx-auto w-full max-w-[1440px] px-3.5', className)}>{children}</div>;
 };

@@ -9,7 +9,7 @@ type LinkButtonProps = Pick<LinkProps, 'href'> &
 
 export const LinkButton = ({ children, className, ...rest }: LinkButtonProps) => {
    return (
-      <Link {...rest} className={cn('colors-300 rounded-lg p-3 ', className)}>
+      <Link {...rest} className={cn('colors-300 rounded-[10px] p-3 ', className)}>
          {children}
       </Link>
    );
