@@ -1,13 +1,19 @@
-import React from 'react';
+'use client';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+
+import { wavePathAnimation } from '@/animations/footer';
 
 export const WaveShape = () => {
+   const waveRef = useRef<HTMLDivElement>(null);
+   const isInView = useInView(waveRef, { once: true, margin: '-200px' });
    return (
-      <div className='custom-shape'>
+      <div ref={waveRef} className='custom-shape'>
          <svg preserveAspectRatio='none' viewBox='0 0 1482 156' fill='none' xmlns='http://www.w3.org/2000/svg'>
-            <path
+            <motion.path
+               {...wavePathAnimation(isInView)}
                d='M2.51331 80.5C160.116 127.5 303.858 171.5 475.834 135.5C721.222 85 707.875 66.5 921.947 58C1120.11 52.0001 1323.4 86.5 1481 110.5'
                stroke='#FACC15'
-               strokeWidth='13'
             />
             <path
                fillRule='evenodd'
