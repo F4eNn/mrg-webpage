@@ -23,7 +23,7 @@ export const Footer = () => {
       <footer id='przeglad-tygodnia' className='relative overflow-hidden border-none bg-lightblack text-white'>
          <WaveShape />
          <Wrapper className='mb-10 mt-40 flex flex-col items-center gap-20'>
-            <Heading as='h2' title='Przez młodych dla młodych' className='phones:mt-2.5' />
+            <Heading as='h2' title='Myśl globalnie, działaj lokalnie' className='phones:mt-2.5' />
             <div className='relaitve flex w-full flex-col items-center justify-between gap-10 text-center lg:flex-row'>
                <div className='relative '>
                   <Image
@@ -35,18 +35,15 @@ export const Footer = () => {
                   />
                </div>
                <PeaceHand />
-               <div className='flex flex-col items-center gap-10 lg:flex-row lg:gap-8 '>
+               <div className='relative flex flex-col items-center gap-10 lg:flex-row lg:gap-8 '>
                   <p className='whitespace-pre-line phones:text-lg md:text-xl lg:whitespace-normal  '>
                      {'Masz jakieś pomysły, Chciałbys/łabyś coś \n zmienić?'}
                   </p>
-                  <LinkButton
-                     href={navigationPaths.contact.path}
-                     className='relative border-[1px] border-yellow bg-transparent px-10 py-3.5 text-lg font-bold text-white'
-                  >
+                  <LinkButton href={navigationPaths.contact.path} className=' px-10 py-3.5 text-lg font-bold '>
                      Napisz do nas
-                     <MobileVector className='absolute -left-[100px] top-20 lg:hidden' />
-                     <DesktopVector className='absolute -left-16 bottom-20 hidden rotate-[10deg] lg:inline-block' />
                   </LinkButton>
+                  <MobileVector className='absolute  -bottom-[125px] -left-[30px] lg:hidden' />
+                  <DesktopVector className='absolute  bottom-20 right-[185px] hidden rotate-[10deg] lg:inline-block' />
                </div>
             </div>
             <Separator className=' -mb-5 mt-20 w-[100px] lg:-my-5 lg:mb-0 lg:mt-0 lg:w-3/4' />
@@ -59,7 +56,12 @@ export const Footer = () => {
                         <li>ul. Pitoniówka 35</li>
                         <li>Kościelisko 34-511</li>
                         <li>
-                           <Link href='tel:+48734622324'>+48 734 622 324</Link>
+                           <Link
+                              href='tel:+48734622324'
+                              className='colors-300 underline underline-offset-4 hover:text-metalic'
+                           >
+                              +48 734 622 324
+                           </Link>
                         </li>
                      </CardInfoWrapper>
                   </div>

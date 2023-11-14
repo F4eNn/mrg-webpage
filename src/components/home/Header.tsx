@@ -51,11 +51,11 @@ export const Header = () => {
                <LinkButton
                   aria-label='Zobacz przegląd tygodnia.'
                   href='#przeglad-tygodnia'
-                  className='animate-bounce rounded-full border-[1px] p-1.5 text-2xl hover:border-yellow hover:text-yellow phones:mt-2 phones:p-2 phones:text-3xl'
+                  className='animate-bounce rounded-full border-[1px] border-white p-1.5 text-2xl text-white phones:mt-2 phones:p-2 phones:text-3xl'
                >
                   <AiOutlineArrowDown />
                </LinkButton>
-               <span className='text-center text-xxs font-[500] uppercase leading-4 tracking-[5px] phones:text-sm sm:text-lg sm:tracking-[10px]'>
+               <span className='text-center text-xxs font-[500] uppercase leading-4 tracking-[5px] text-white phones:text-sm sm:text-lg sm:tracking-[10px]'>
                   przez młodych dla młodych
                </span>
             </div>

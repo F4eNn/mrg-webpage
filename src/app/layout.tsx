@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
    return (
-      <html lang='pl-PL'>
+      <html lang='pl-PL' className='scroll-smooth scroll-pt-[76px]'>
          <body className={`${roboto.className} bg-white`}>
             <nav>
                <DesktopNav />
