@@ -12,3 +12,14 @@ export const peaceHandAnimation = (isInView: boolean) => {
       },
    };
 };
+
+export const wavePathAnimation = (isInView: boolean) => {
+   return {
+      initial: { pathLength: 0 },
+      animate: {
+         pathLength: isInView ? 1 : 0,
+         strokeWidth: 13,
+         transition: { duration: 5 },
+      },
+   };
+};
