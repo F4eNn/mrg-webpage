@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { navigationPaths } from '@/constants/navigation';
 
 import { Heading } from '../ui/Heading';
+import { CardInfoWrapper } from './CardInfoWrapper';
 
 export const AboutUs = () => {
    type AboutItem = {
@@ -18,15 +19,15 @@ export const AboutUs = () => {
       { url: '', desc: 'Polityka prywatności' },
    ];
    return (
-      <div className='space-y-3.5'>
+      <div className='space-y-3.5 md:space-y-7'>
          <Heading as='h3' title='O nas' />
-         <ul>
+         <CardInfoWrapper>
             {aboutItems.map(({ desc, url }) => (
                <li key={url}>
                   <Link href={url}>{desc}</Link>
                </li>
             ))}
-         </ul>
+         </CardInfoWrapper>
       </div>
    );
 };
