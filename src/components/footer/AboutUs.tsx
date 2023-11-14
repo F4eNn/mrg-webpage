@@ -23,8 +23,10 @@ export const AboutUs = () => {
          <Heading as='h3' title='O nas' />
          <CardInfoWrapper>
             {aboutItems.map(({ desc, url }) => (
-               <li key={url}>
-                  <Link href={url}>{desc}</Link>
+               <li className='flex' key={url}>
+                  <Link className='colors-300 w-full hover:text-metalic' href={url}>
+                     {desc}
+                  </Link>
                </li>
             ))}
          </CardInfoWrapper>
