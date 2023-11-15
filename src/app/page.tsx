@@ -1,5 +1,6 @@
 import { Header } from '@/components/home/Header';
 import { PreLoader } from '@/components/ui/PreLoader';
+import {Greeting} from '@/components/home/Greeting'
 
 export default function Home() {
    return (
@@ -7,7 +8,7 @@ export default function Home() {
          <Header />
          <main className='h-[700px]' >
             <PreLoader />
-            <p>MAIN</p>
+            <Greeting />
          </main>
       </>
    );
