@@ -5,7 +5,7 @@ export default function Home() {
    return (
       <>
          <Header />
-         <main className='h-[2000px]'>
+         <main className='h-[700px]' >
             <PreLoader />
             <p>MAIN</p>
          </main>

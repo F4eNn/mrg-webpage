@@ -18,9 +18,9 @@ import { PeaceHand } from './PeaceHand';
 
 export const Footer = () => {
    const getYear = new Date().getFullYear();
-   //usunac id
+
    return (
-      <footer id='przeglad-tygodnia' className='relative overflow-hidden border-none bg-lightblack text-white'>
+      <footer className='relative overflow-hidden border-none bg-lightblack text-white'>
          <WaveShape />
          <Wrapper className='mb-10 mt-40 flex flex-col items-center gap-20'>
             <Heading as='h2' title='Myśl globalnie, działaj lokalnie' className='phones:mt-2.5' />
