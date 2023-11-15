@@ -3,12 +3,13 @@ import React from 'react';
 import { usePathname } from 'next/navigation';
 import { AiOutlineArrowDown } from 'react-icons/ai';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { Backdrop } from '../ui/Backdrop';
 import { navigationArray } from '../../constants/navigation';
 import { Wrapper } from '../ui/Wrapper';
 import { Dot } from '../ui/Dot';
-import { LinkButton } from '../ui/LinkButton';
+import { buttonVariants } from '../ui/Button';
 
 export const Header = () => {
    const pathname = usePathname();
@@ -27,7 +28,7 @@ export const Header = () => {
             </video>
             <Backdrop />
          </div>
-         <Wrapper className='flex flex-1 flex-col items-center  justify-between gap-5 md:gap-20 text-white'>
+         <Wrapper className='flex flex-1 flex-col items-center  justify-between gap-5 text-white md:gap-20'>
             <q className='uppercase md:text-xl '>dream big, work hard</q>
             <div className='flex w-full flex-col-reverse items-center gap-7   md:flex-row md:items-stretch md:justify-between md:gap-0 lg:-mt-10 '>
                <div className='mr-a relative h-max w-max text-center  md:ml-0 md:text-left'>
@@ -48,13 +49,16 @@ export const Header = () => {
                </div>
             </div>
             <div className='mb-5 flex flex-col items-center justify-end gap-2.5 phones:gap-5'>
-               <LinkButton
+               <Link
                   aria-label='Zobacz przegląd tygodnia.'
                   href='#przeglad-tygodnia'
-                  className='animate-bounce rounded-full border-[1px] border-white p-1.5 text-2xl text-white phones:mt-2 phones:p-2 phones:text-3xl'
+                  className={buttonVariants({
+                     className:
+                        'animate-bounce rounded-full border-[1px] border-white p-1.5 text-2xl text-white phones:mt-2 phones:p-2 phones:text-3xl',
+                  })}
                >
                   <AiOutlineArrowDown />
-               </LinkButton>
+               </Link>
                <span className='text-center text-xxs font-[500] uppercase leading-4 tracking-[5px] text-white phones:text-sm sm:text-lg sm:tracking-[10px]'>
                   przez młodych dla młodych
                </span>
