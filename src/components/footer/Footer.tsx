@@ -1,11 +1,12 @@
+'use client';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
-import { navigationPaths } from '@/constants/navigation';
+import { navigationArray, navigationPaths } from '@/constants/navigation';
 
 import { Wrapper } from '../ui/Wrapper';
-import { LinkButton } from '../ui/LinkButton';
 import MobileVector from '../../../public/assets/footer/mobile-footer-vector.svg';
 import DesktopVector from '../../../public/assets/footer/desktop-vector.svg';
 import { Separator } from '../ui/Separator';
@@ -15,10 +16,13 @@ import { AboutUs } from './AboutUs';
 import { WaveShape } from './WaveShape';
 import { CardInfoWrapper } from './CardInfoWrapper';
 import { PeaceHand } from './PeaceHand';
+import { buttonVariants } from '../controls/Button';
 
 export const Footer = () => {
    const getYear = new Date().getFullYear();
-
+   const pathname = usePathname();
+   if (!navigationArray.some(({ path }) => path === pathname)) return;
+   
    return (
       <footer className='relative overflow-hidden border-none bg-lightblack text-white'>
          <WaveShape />
@@ -39,11 +43,14 @@ export const Footer = () => {
                   <p className='whitespace-pre-line phones:text-lg md:text-xl lg:whitespace-normal  '>
                      {'Masz jakieś pomysły, Chciałbys/łabyś coś \n zmienić?'}
                   </p>
-                  <LinkButton href={navigationPaths.contact.path} className=' px-10 py-3.5 text-lg font-bold '>
+                  <Link
+                     href={navigationPaths.contact.path}
+                     className={buttonVariants({ size: 'default', variant: 'primary' })}
+                  >
                      Napisz do nas
-                  </LinkButton>
+                  </Link>
                   <MobileVector className='absolute  -bottom-[125px] -left-[30px] lg:hidden' />
-                  <DesktopVector className='absolute  bottom-20 right-[185px] hidden rotate-[10deg] lg:inline-block' />
+                  <DesktopVector className='absolute  bottom-20 right-[145px] hidden rotate-[20deg] lg:inline-block' />
                </div>
             </div>
             <Separator className=' -mb-5 mt-20 w-[100px] lg:-my-5 lg:mb-0 lg:mt-0 lg:w-3/4' />

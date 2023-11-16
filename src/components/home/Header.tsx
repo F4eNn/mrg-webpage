@@ -9,7 +9,7 @@ import { Backdrop } from '../ui/Backdrop';
 import { navigationArray } from '../../constants/navigation';
 import { Wrapper } from '../ui/Wrapper';
 import { Dot } from '../ui/Dot';
-import { buttonVariants } from '../ui/Button';
+import { buttonVariants } from '../controls/Button';
 
 export const Header = () => {
    const pathname = usePathname();
