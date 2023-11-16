@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { navigationPaths } from '@/constants/navigation';
-import { buttonVariants } from '@/components/ui/Button';
+import { buttonVariants } from '@/components/controls/Button';
 
 export const metadata: Metadata = {
    title: 'Not found',
@@ -18,7 +18,10 @@ const NotFound = () => {
             Przepraszamy, nie znaleziono strony z podanym adresem <br /> Wróc do strony głównej.
          </p>
 
-         <Link className={buttonVariants({ variant: 'secondary' })} href={navigationPaths.home.path}>
+         <Link
+            className={buttonVariants({ variant: 'secondary', className: 'border-[1px]' })}
+            href={navigationPaths.home.path}
+         >
             Home
          </Link>
       </div>
