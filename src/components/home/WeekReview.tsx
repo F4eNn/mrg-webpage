@@ -3,11 +3,16 @@ import React from 'react';
 import { Wrapper } from '@/components/ui/Wrapper';
 
 import { ArticleCard } from '../ui/ArticleCard';
+import { Section } from '../ui/Section';
+import { Heading } from '../ui/Heading';
 
 export const WeekReview = () => {
    return (
-      <section id='przeglad-tygodnia' className='my-32  py-10'>
-         <Wrapper className='grid grid-cols-3 gap-14   lg:px-[80px]'>
+      <Section>
+         <Wrapper>
+            <Heading as='h2' title='Przegląd tygodnia' className='mb-16 lg:mb-24'/>
+         </Wrapper>
+         <Wrapper className='grid grid-cols-3 gap-14 lg:px-[80px]'>
             <div className='col-span-3 flex flex-col gap-14 sm:flex-row sm:gap-10 md:gap-14 xl:col-span-2'>
                <ArticleCard href='#przeglad-tygodnia' />
                <ArticleCard href='#przeglad-tygodnia' />
@@ -22,6 +27,7 @@ export const WeekReview = () => {
                <ArticleCard variant={'fresh'} href='#przeglad-tygodnia' />
             </div>
          </Wrapper>
-      </section>
+         
+      </Section>
    );
 };
