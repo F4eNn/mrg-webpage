@@ -1,4 +1,6 @@
+'use client';
 import React, { PropsWithChildren } from 'react';
+import CountUp from 'react-countup';
 
 import { Wrapper } from '../ui/Wrapper';
 import { Heading } from '../ui/Heading';
@@ -10,22 +12,40 @@ import DashIcon from '../../../public/assets/home/dashIcon.svg';
 export const ProjectStatistics = () => {
    return (
       <Section>
-         <Wrapper >
+         <Wrapper>
             <Heading as='h2' title='Statystyki Projektu' className='mb-16 lg:mb-24' />
-            <div className='flex items-center gap-y-24 flex-wrap justify-around'>
+            <div className='flex flex-wrap items-center justify-around gap-y-24'>
                <StasticItem>
                   <CakeIcon />
-                  <Heading as='h3' title='46' />
+                  <CountUp
+                     end={46}
+                     className='text-2xl font-bold'
+                     duration={5}
+                     enableScrollSpy={true}
+                     scrollSpyOnce={true}
+                  />
                   <span>Ile razem mamy lat</span>
                </StasticItem>
                <StasticItem>
                   <DashIcon />
-                  <Heading as='h3' title='128' />
+                  <CountUp
+                     end={128}
+                     className='text-2xl font-bold'
+                     duration={5}
+                     enableScrollSpy={true}
+                     scrollSpyOnce={true}
+                  />
                   <span>Ilość opublikowanych postów</span>
                </StasticItem>
                <StasticItem>
                   <CalendarIcon />
-                  <Heading as='h3' title='216' />
+                  <CountUp
+                     end={216}
+                     className='text-2xl font-bold'
+                     duration={5}
+                     enableScrollSpy={true}
+                     scrollSpyOnce={true}
+                  />
                   <span>Upłynięte dni od początku projektu</span>
                </StasticItem>
             </div>
@@ -35,5 +55,5 @@ export const ProjectStatistics = () => {
 };
 
 const StasticItem = ({ children }: PropsWithChildren) => {
-   return <div className='flex flex-col justify-center items-center gap-5 w-full md:w-[300px]'>{children}</div>;
+   return <div className='flex w-full flex-col items-center justify-center gap-5 md:w-[300px]'>{children}</div>;
 };
