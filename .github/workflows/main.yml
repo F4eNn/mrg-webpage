@@ -6,12 +6,14 @@ on:
     pull_request:
         branches: [main]
 
-   
+env:
+              NEXT_STRAPI_URL_API_ENDPOINT: ${{ secrets.NEXT_STRAPI_URL_API_ENDPOINT }}
+              NEXT_STRAPI_URL: ${{ secrets.NEXT_STRAPI_URL }}
+              NEXT_API_TOKEN: ${{ secrets.NEXT_API_TOKEN }}
 
 jobs:
     react-app-workflow:
         runs-on: ubuntu-latest 
-        environment: Production 
         steps:
             - uses: actions/checkout@v2
             - name: Use Node.js 20.x
