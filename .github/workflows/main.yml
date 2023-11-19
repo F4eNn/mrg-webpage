@@ -9,6 +9,8 @@ on:
 jobs:
     react-app-workflow:     
         runs-on: ubuntu-latest  
+        environment: 
+              name: Production
         steps:
             - name: Make envfile
               uses: SpicyPizza/create-envfile@v2.0
