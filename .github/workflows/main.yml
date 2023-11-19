@@ -10,10 +10,8 @@ on:
 
 jobs:
     react-app-workflow:
-        env:
-              NEXT_STRAPI_URL_API_ENDPOINT: ${{ secrets.NEXT_STRAPI_URL_API_ENDPOINT }}
-              NEXT_STRAPI_URL: ${{ secrets.NEXT_STRAPI_URL }}
-              NEXT_API_TOKEN: ${{ secrets.NEXT_API_TOKEN }}
+        environment: 
+              name: Production
         runs-on: ubuntu-latest 
         steps:
             - uses: actions/checkout@v2
