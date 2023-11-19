@@ -9,20 +9,17 @@ on:
 jobs:
     react-app-workflow:     
         runs-on: ubuntu-latest  
-        environment: 
-              name: Production
         steps:
-            - name: Make envfile
-              uses: ozaytsev86/create-env-file@v1
-              with: 
-                  INPUT_ENV_NEXT_STRAPI_URL_API_ENDPOINT: ${{ secrets.NEXT_STRAPI_URL_API_ENDPOINT }}
-                  INPUT_ENV_NEXT_STRAPI_URL: ${{ secrets.NEXT_STRAPI_URL }}
-                  INPUT_ENV_NEXT_API_TOKEN: ${{ secrets.NEXT_API_TOKEN }}
             - uses: actions/checkout@v2
             - name: Use Node.js 20.x
               uses: actions/setup-node@v2
               with:
                   node-version: 20.x
+            - name: Set up environment variables
+              run: |
+                    echo "NEXT_STRAPI_URL_API_ENDPOINT=${{ secrets.NEXT_STRAPI_URL_API_ENDPOINT }}" 
+                    echo "NEXT_STRAPI_URL=${{ secrets.NEXT_STRAPI_URL }}" 
+                    echo "NEXT_API_TOKEN=${{ secrets.NEXT_API_TOKEN }}" 
             - name: npm ci
               run: npm ci
             - name: format
