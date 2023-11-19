@@ -11,6 +11,9 @@ const nextConfig = {
    images: {
       remotePatterns: [{ hostname: 'localhost', port: '1337', pathname: '/uploads/**', protocol: 'http' }],
    },
+   experimental: {
+      webpackBuildWorker: true,
+   },
 };
 
 module.exports = nextConfig;
