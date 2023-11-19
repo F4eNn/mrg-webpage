@@ -1,9 +1,11 @@
 import React, { ComponentProps } from 'react';
 import { VariantProps, cva } from 'class-variance-authority';
 import Image from 'next/image';
-import Link, { LinkProps } from 'next/link';
+import Link from 'next/link';
 
 import { cn } from '@/utils/cn';
+import { IPartialArticleData } from '@/app/page';
+import { BACKEND_URL } from '@/constants/config';
 
 import { Dot } from './Dot';
 import { Heading } from './Heading';
@@ -15,7 +17,7 @@ import { Backdrop } from './Backdrop';
 const cardVariants = cva('rounded-sm overflow-hidden  mx-auto bg-white shadow-md', {
    variants: {
       variant: {
-         now: 'flex flex-col  justify-between ',
+         now: 'flex flex-col  justify-between w-full',
          fresh: 'flex flex-col justify-between w-full hover:scale-[1.02] transform-300 active:scale-100',
          stale: 'relative w-full   hover:scale-[1.02] transform-300 active:scale-100  ',
       },
@@ -29,31 +31,27 @@ const cardVariants = cva('rounded-sm overflow-hidden  mx-auto bg-white shadow-md
    },
 });
 
-interface ArticleCardProps
-   extends VariantProps<typeof cardVariants>,
-      ComponentProps<'article'>,
-      Pick<LinkProps, 'href'> {}
-      
+interface ArticleCardProps extends VariantProps<typeof cardVariants>, ComponentProps<'article'> {
+   articleData: IPartialArticleData;
+}
 
-export const ArticleCard = ({ size, variant, className, href, ...props }: ArticleCardProps) => {
-
+export const ArticleCard = ({ size, variant, className, articleData, ...props }: ArticleCardProps) => {
+   const { krotki_opis, publishedAt, slug, tytul, zdjecie_glowne } = articleData;
+   const { alternativeText, hash, url } = zdjecie_glowne.data.attributes;
    if (variant === 'fresh') {
       return (
-         <Link href={href} className={cn(cardVariants({ size, variant, className }))}>
+         <Link href={`/${slug}`} className={cn(cardVariants({ size, variant, className }))}>
             <Image
-               src='/dummy.jpg'
-               alt='dummy image'
+               src={`${BACKEND_URL}${url}`}
+               blurDataURL={hash}
+               alt={alternativeText ?? 'Zdjęcie poglądowe,czego dotyczy artykuł'}
                width={600}
                height={600}
                className='h-[200px] w-full object-cover '
             />
             <div className='mb-5 space-y-9 px-4 py-6 md:p-6 '>
-               <CreatedTime isNew={false} />
-               <Heading
-                  as='h3'
-                  title='Lorem ipsum dolor sit amet consectetur.optio itques optio itaque'
-                  className='my-5 line-clamp-2'
-               />
+               <CreatedTime publishedAt={publishedAt} isNew={false} />
+               <Heading as='h3' title={tytul} className='my-5 line-clamp-2' />
             </div>
          </Link>
       );
@@ -61,18 +59,19 @@ export const ArticleCard = ({ size, variant, className, href, ...props }: Articl
 
    if (variant === 'stale') {
       return (
-         <Link href={href} className={cn(cardVariants({ size, variant, className }))}>
+         <Link href={`/${slug}`} className={cn(cardVariants({ size, variant, className }))}>
             <Backdrop className='z-0 bg-black/40  ' />
             <Image
-               src='/dummy.jpg'
-               alt='dummy image'
+               src={`${BACKEND_URL}${url}`}
+               blurDataURL={hash}
+               alt={alternativeText ?? 'Zdjęcie poglądowe,czego dotyczy artykuł'}
                width={600}
                height={600}
-               className=' h-[225px] xl:h-[163px] w-full object-cover'
+               className=' h-[225px] w-full object-cover xl:h-[163px]'
             />
             <Heading
                as='h3'
-               title='Lorem ipsum dolor sit amet consectetur.optio itques optio itaques'
+               title={tytul}
                className='absolute bottom-0 left-4 right-3 my-5 line-clamp-2 text-white md:left-6'
             />
          </Link>
@@ -81,20 +80,19 @@ export const ArticleCard = ({ size, variant, className, href, ...props }: Articl
 
    return (
       <article {...props} className={cn(cardVariants({ size, variant, className }))}>
-         <Image src='/dummy.jpg' alt='dummy image' width={600} height={600} className='h-[250px] w-full object-cover' />
+         <Image
+            src={`${BACKEND_URL}${url}`}
+            blurDataURL={hash}
+            alt={alternativeText ?? 'Zdjęcie poglądowe,czego dotyczy artykuł'}
+            width={600}
+            height={600}
+            className='h-[250px] w-full object-cover'
+         />
          <div className='space-y-9 px-4  py-6 md:p-6'>
-            <CreatedTime />
+            <CreatedTime publishedAt={publishedAt} />
             <div className='space-y-7'>
-               <Heading
-                  as='h3'
-                  title='Lorem ipsum dolor sit amet consectetur.optio itques optio itaque'
-                  className='my-5 line-clamp-2'
-               />
-               <TextDesc className='line-clamp-3 text-left'>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio itaque eum debitis facere, impedit
-                  neque asperiores, eius, laboriosam possimus ea iure quas. Ducimus ea accusamus dolore deleniti
-                  laboriosam, est sit harum asperiores voluptates officia, placeat dolores, nisi eum!
-               </TextDesc>
+               <Heading as='h3' title={tytul} className='my-5 line-clamp-2' />
+               <TextDesc className='line-clamp-3 text-left'>{krotki_opis}</TextDesc>
             </div>
          </div>
          <Link
@@ -103,7 +101,7 @@ export const ArticleCard = ({ size, variant, className, href, ...props }: Articl
                size: 'tracking',
                className: 'group flex items-center justify-between ',
             })}
-            href={href}
+            href={`/${slug}`}
          >
             Zobacz więcej
             <ArrowIcon className='colors-300 stroke-lightblack group-hover:stroke-white' />
@@ -112,11 +110,13 @@ export const ArticleCard = ({ size, variant, className, href, ...props }: Articl
    );
 };
 
-const CreatedTime = ({ isNew = true }: { isNew?: boolean }) => {
+const CreatedTime = ({ isNew = true, publishedAt }: { isNew?: boolean; publishedAt: string }) => {
+   const date = new Date(publishedAt);
+   const published = date.toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' });
    return (
       <div className='flex items-center justify-between'>
          <span className='flex items-center gap-2 text-xs phones:text-sm'>
-            <span className='font-light italic'>Dodano</span> 23 lutego 2023
+            <span className='font-light italic'>Dodano</span> {published}
             <Dot className=' static -right-3  h-2 w-2 ' />
          </span>
          {isNew && (
