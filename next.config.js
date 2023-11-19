@@ -8,6 +8,9 @@ const nextConfig = {
 
       return config;
    },
+   images: {
+      remotePatterns: [{ hostname: 'localhost', port: '1337', pathname: '/uploads/**', protocol: 'http' }],
+   },
 };
 
 module.exports = nextConfig;
