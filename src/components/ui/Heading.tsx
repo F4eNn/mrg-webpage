@@ -10,9 +10,9 @@ type HeadingProps = {
 
 export const Heading = ({ as, title, className }: HeadingProps) => {
    if (as === 'h2') {
-      return <h2 className={cn('text-center text-xl font-bold phones:text-3xl md:text-4xl', className)}>{title}</h2>;
+      return <h2 className={cn('text-center text-xl font-bold phones:text-3xl md:text-3xl text-lightblack', className)}>{title}</h2>;
    } else if (as === 'h3') {
-      return <h3 className={cn('text-lg font-bold phones:text-2xl', className)}>{title}</h3>;
+      return <h3 className={cn('text-lg font-bold phones:text-2xl text-lightblack', className)}>{title}</h3>;
    }
-   return <h1 className={cn('', className)}>{title}</h1>;
+   return <h1 className={cn('text-xl font-bold text-center phones:text-3xl md:text-5xl text-lightblack', className)}>{title}</h1>;
 };

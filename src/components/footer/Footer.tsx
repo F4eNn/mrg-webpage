@@ -27,7 +27,7 @@ export const Footer = () => {
       <footer className='relative overflow-hidden border-none bg-lightblack text-white'>
          <WaveShape />
          <Wrapper className='mb-10 mt-40 flex flex-col items-center gap-20'>
-            <Heading as='h2' title='Myśl globalnie, działaj lokalnie' className='phones:mt-2.5' />
+            <Heading as='h2' title='Myśl globalnie, działaj lokalnie' className='phones:mt-2.5 text-white' />
             <div className='relaitve flex w-full flex-col items-center justify-between gap-10 text-center lg:flex-row'>
                <div className='relative '>
                   <Image
