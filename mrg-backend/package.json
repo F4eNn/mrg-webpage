@@ -9,21 +9,22 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
   "dependencies": {
-    "@strapi/strapi": "4.15.0",
-    "@strapi/plugin-users-permissions": "4.15.0",
-    "@strapi/plugin-i18n": "4.15.0",
-    "pg": "8.8.0"
+    "@_sh/strapi-plugin-ckeditor": "^2.0.4",
+    "@strapi/plugin-i18n": "4.14.6",
+    "@strapi/plugin-users-permissions": "4.14.6",
+    "@strapi/strapi": "4.14.6",
+    "pg": "8.8.0",
+    "strapi-plugin-slugify": "^2.3.8"
   },
   "author": {
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "e3d601d3-d566-4b50-a02d-18b1558a480b"
+    "uuid": "fca984a6-9d5d-45ed-ba8b-da346db40e64"
   },
   "engines": {
-    "node": ">=18.0.0 <=20.x.x",
+    "node": ">=16.0.0 <=20.x.x",
     "npm": ">=6.0.0"
   },
   "license": "MIT"
