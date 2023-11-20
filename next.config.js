@@ -9,7 +9,10 @@ const nextConfig = {
       return config;
    },
    images: {
-      remotePatterns: [{ hostname: 'localhost', port: '1337', pathname: '/uploads/**', protocol: 'http' }],
+      remotePatterns: [
+         { hostname: 'localhost', port: '1337', pathname: '/uploads/**', protocol: 'http' },
+         { hostname: 'mrg-web-service.onrender.com', pathname: '/uploads/**', protocol: 'https'},
+      ],
    },
    experimental: {
       webpackBuildWorker: true,
