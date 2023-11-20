@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "home_posts",
+  "info": {
+    "singularName": "home-post",
+    "pluralName": "home-posts",
+    "displayName": "home-post"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "opis_posta": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "tytul": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    }
+  }
+}
