@@ -9,7 +9,6 @@
    .transform-300 {
       @apply transition-transform duration-300;
    }
-  
 }
 .custom-shape {
    position: absolute;
