@@ -24,6 +24,7 @@ export const DesktopNav = () => {
       window.addEventListener('scroll', handleScroll);
       return () => window.removeEventListener('scroll', handleScroll);
    }, []);
+   if (!navigationArray.some(({ path }) => path === pathname)) return;
    return (
       <div
          className={`fixed left-0 right-0 z-50  hidden md:block ${

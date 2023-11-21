@@ -21,6 +21,7 @@ export const MobileNav = () => {
          body!.style.overflow = 'auto';
       }
    };
+   if (!navigationArray.some(({ path }) => path === pathname)) return;
    return (
       <>
          <div className=' md:hidden'>
