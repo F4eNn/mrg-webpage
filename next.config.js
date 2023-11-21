@@ -11,7 +11,7 @@ const nextConfig = {
    images: {
       remotePatterns: [
          { hostname: 'localhost', port: '1337', pathname: '/uploads/**', protocol: 'http' },
-         { hostname: 'mrg-web-service.onrender.com', pathname: '/uploads/**', protocol: 'https'},
+         { hostname: `${process.env.NEXT_REMOTE_IMAGE_PATTERN_URL}`, pathname: '/uploads/**', protocol: 'https'},
       ],
    },
    experimental: {
