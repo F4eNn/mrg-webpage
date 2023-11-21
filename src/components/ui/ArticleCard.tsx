@@ -17,9 +17,8 @@ import { Backdrop } from './Backdrop';
 const cardVariants = cva('rounded-sm overflow-hidden  mx-auto bg-white shadow-md', {
    variants: {
       variant: {
-         now: 'flex flex-col  justify-between w-full',
-         fresh: 'flex flex-col justify-between w-full hover:scale-[1.02] transform-300 active:scale-100',
-         stale: 'relative w-full   hover:scale-[1.02] transform-300 active:scale-100  ',
+         now: 'flex flex-col justify-between w-full',
+         fresh: 'flex flex-col justify-between w-full  hover:scale-[1.02] transform-300 active:scale-100',
       },
       size: {
          default: '',
@@ -38,17 +37,21 @@ interface ArticleCardProps extends VariantProps<typeof cardVariants>, ComponentP
 export const ArticleCard = ({ size, variant, className, articleData, ...props }: ArticleCardProps) => {
    const { krotki_opis, publishedAt, slug, tytul, zdjecie_glowne } = articleData;
    const { alternativeText, hash, url } = zdjecie_glowne.data.attributes;
+
    if (variant === 'fresh') {
       return (
          <Link href={`/${slug}`} className={cn(cardVariants({ size, variant, className }))}>
-            <Image
-               src={`${BACKEND_URL}${url}`}
-               blurDataURL={hash}
-               alt={alternativeText ?? 'Zdjęcie poglądowe,czego dotyczy artykuł'}
-               width={600}
-               height={600}
-               className='h-[200px] w-full object-cover '
-            />
+            <div className='relative'>
+               <Image
+                  src={`${BACKEND_URL}${url}`}
+                  blurDataURL={hash}
+                  alt={alternativeText ?? 'Zdjęcie poglądowe,czego dotyczy artykuł'}
+                  width={600}
+                  height={600}
+                  className='h-[250px] sm:h-[300px] md:h-[200px] w-full object-cover '
+               />
+               <Backdrop className='z-10 bg-black/40' />
+            </div>
             <div className='mb-5 space-y-9 px-4 py-6 md:p-6 '>
                <CreatedTime publishedAt={publishedAt} isNew={false} />
                <Heading as='h3' title={tytul} className='my-5 line-clamp-2' />
@@ -57,37 +60,19 @@ export const ArticleCard = ({ size, variant, className, articleData, ...props }:
       );
    }
 
-   if (variant === 'stale') {
-      return (
-         <Link href={`/${slug}`} className={cn(cardVariants({ size, variant, className }))}>
-            <Backdrop className='z-0 bg-black/40  ' />
+   return (
+      <article {...props} className={cn(cardVariants({ size, variant, className }))}>
+         <div className='relative'>
             <Image
                src={`${BACKEND_URL}${url}`}
                blurDataURL={hash}
                alt={alternativeText ?? 'Zdjęcie poglądowe,czego dotyczy artykuł'}
                width={600}
                height={600}
-               className=' h-[225px] w-full object-cover xl:h-[163px]'
+               className='h-[250px] sm:h-[350px] w-full object-cover'
             />
-            <Heading
-               as='h3'
-               title={tytul}
-               className='absolute bottom-0 left-4 right-3 my-5 line-clamp-2 text-white md:left-6'
-            />
-         </Link>
-      );
-   }
-
-   return (
-      <article {...props} className={cn(cardVariants({ size, variant, className }))}>
-         <Image
-            src={`${BACKEND_URL}${url}`}
-            blurDataURL={hash}
-            alt={alternativeText ?? 'Zdjęcie poglądowe,czego dotyczy artykuł'}
-            width={600}
-            height={600}
-            className='h-[250px] w-full object-cover'
-         />
+            <Backdrop className='z-10 bg-black/40' />
+         </div>
          <div className='space-y-9 px-4  py-6 md:p-6'>
             <CreatedTime publishedAt={publishedAt} />
             <div className='space-y-7'>
@@ -120,7 +105,7 @@ const CreatedTime = ({ isNew = true, publishedAt }: { isNew?: boolean; published
             <Dot className=' static -right-3  h-2 w-2 ' />
          </span>
          {isNew && (
-            <span className='ml-5 animate-pulse text-sm font-bold uppercase tracking-widest text-orange-400'>Nowe</span>
+            <span className=' animate-pulse text-sm font-bold uppercase tracking-widest text-orange-400'>Nowe</span>
          )}
       </div>
    );
