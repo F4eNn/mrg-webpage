@@ -6,5 +6,5 @@ type TextDescProps = PropsWithChildren & {
 };
 
 export const TextDesc = ({ children, className }: TextDescProps) => {
-   return <p className={cn('text-center text-sm mx-auto text-lightGrey phones:text-lg', className)}>{children}</p>;
+   return <p className={cn('text-center text-sm mx-auto text-inherit phones:text-lg', className)}>{children}</p>;
 };
