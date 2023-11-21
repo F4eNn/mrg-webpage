@@ -12,14 +12,14 @@ export const metadata: Metadata = {
 
 const NotFound = () => {
    return (
-      <div className='mt-10 flex flex-col   items-center justify-center gap-5 '>
+      <div className='mt-10 flex flex-col  items-center justify-center gap-5 '>
          <h1 className='text-3xl font-bold'>Oops!</h1>
          <p className='text-center'>
             Przepraszamy, nie znaleziono strony z podanym adresem <br /> Wróc do strony głównej.
          </p>
 
          <Link
-            className={buttonVariants({ variant: 'secondary', className: 'border-[1px]' })}
+            className={buttonVariants({ variant: 'secondary', size: 'default', className: 'border-[1px]' })}
             href={navigationPaths.home.path}
          >
             Home
