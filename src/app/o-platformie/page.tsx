@@ -47,7 +47,7 @@ const AboutPlatformPage = () => {
                stwierdzamy, że bez nas młodzi mieszkańcy Gminy Kościelisko nie wykorzystają szansy na efektywne życie i
                aktywne uczestnictwo w społeczeństwie
             </TextDesc>
-            {/* <Heading
+            <Heading
                as='h2'
                title='Polityka młodzieżowa ma służyć młodym, a nie dorosłym
             '
@@ -104,7 +104,7 @@ const AboutPlatformPage = () => {
                aktywności w ramach jego działalności itd. Ponadto sami prowadzimy akademię filmową oraz dziennikarską, w
                ramach której organizujemy warsztaty i tworzymy filmy krótkometrażowe, kampanie społeczne, artykuły lub
                inne tekst prasowe, z którymi później dzielimy się z naszymi odbiorcami.
-            </TextDesc> */}
+            </TextDesc>
          </Wrapper>
       </main>
    );
