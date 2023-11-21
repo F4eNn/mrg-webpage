@@ -15,12 +15,13 @@ const buttonVariants = cva(
          },
          size: {
             default: 'px-10 py-3.5 text-lg font-bold',
+            nonePadding: 'text-lg font-bold',
             tracking: 'font-normal tracking-[6px] text-sm phones:text-base px-4 py-5 md:px-6',
          },
       },
       defaultVariants: {
          variant: 'primary',
-         size: 'default',
+         size: 'nonePadding',
       },
    },
 );
