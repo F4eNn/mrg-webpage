@@ -5,7 +5,6 @@ import Link from 'next/link';
 
 import { cn } from '@/utils/cn';
 import { IPartialArticleData } from '@/app/page';
-import { BACKEND_URL } from '@/constants/config';
 
 import { Dot } from './Dot';
 import { Heading } from './Heading';
@@ -43,7 +42,7 @@ export const ArticleCard = ({ size, variant, className, articleData, ...props }:
          <Link href={`/${slug}`} className={cn(cardVariants({ size, variant, className }))}>
             <div className='relative'>
                <Image
-                  src={`${BACKEND_URL}${url}`}
+                  src={`${url}`}
                   blurDataURL={hash}
                   alt={alternativeText ?? 'Zdjęcie poglądowe,czego dotyczy artykuł'}
                   width={600}
@@ -64,7 +63,7 @@ export const ArticleCard = ({ size, variant, className, articleData, ...props }:
       <article {...props} className={cn(cardVariants({ size, variant, className }))}>
          <div className='relative'>
             <Image
-               src={`${BACKEND_URL}${url}`}
+               src={`${url}`}
                blurDataURL={hash}
                alt={alternativeText ?? 'Zdjęcie poglądowe,czego dotyczy artykuł'}
                width={600}
@@ -75,9 +74,9 @@ export const ArticleCard = ({ size, variant, className, articleData, ...props }:
          </div>
          <div className='space-y-9 px-4  py-6 md:p-6'>
             <CreatedTime publishedAt={publishedAt} />
-            <div className='space-y-7'>
+            <div className='space-y-7 '>
                <Heading as='h3' title={tytul} className='my-5 line-clamp-2' />
-               <TextDesc className='line-clamp-3 text-left'>{krotki_opis}</TextDesc>
+               <TextDesc className='line-clamp-3 text-lightGrey text-left'>{krotki_opis}</TextDesc>
             </div>
          </div>
          <Link
