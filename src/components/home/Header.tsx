@@ -1,19 +1,14 @@
-'use client';
 import React from 'react';
-import { usePathname } from 'next/navigation';
 import { AiOutlineArrowDown } from 'react-icons/ai';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import { Backdrop } from '../ui/Backdrop';
-import { navigationArray } from '../../constants/navigation';
 import { Wrapper } from '../ui/Wrapper';
 import { Dot } from '../ui/Dot';
 import { buttonVariants } from '../controls/Button';
 
 export const Header = () => {
-   const pathname = usePathname();
-   if (!navigationArray.some(({ path }) => path === pathname)) return;
    return (
       <header className='relative  flex min-h-[100svh] flex-col justify-stretch pt-[120px] phones:pt-[100px] md:pt-[140px]'>
          <div>
@@ -54,7 +49,7 @@ export const Header = () => {
                   href='#przeglad-tygodnia'
                   className={buttonVariants({
                      className:
-                        'animate-bounce rounded-full border-[1px] border-white p-1.5 text-2xl text-white phones:mt-2 phones:p-2 phones:text-3xl',
+                        'animate-bounce rounded-full p-1.5 text-2xl text-white phones:mt-2 phones:p-2 phones:text-3xl',
                   })}
                >
                   <AiOutlineArrowDown />
