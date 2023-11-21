@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { ComponentProps } from 'react';
 
 import { PropsWithChildren } from '@/types/global';
 
-export const Section = ({ children }: PropsWithChildren) => {
-   return <section className='lg:my-32 my-24'>{children}</section>;
+type SectionProps = Pick<ComponentProps<'section'>, 'id'> & PropsWithChildren;
+
+export const Section = ({ children, ...rest }: SectionProps) => {
+   return (
+      <section {...rest} className='my-24 lg:my-32'>
+         {children}
+      </section>
+   );
 };
