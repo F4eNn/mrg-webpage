@@ -5,15 +5,29 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import { navigationArray } from '@/constants/navigation';
+import { navigationArray, navigationPaths } from '@/constants/navigation';
 import { dropdownAnimation } from '@/animations/nav';
+
+import { Dot } from '../ui/Dot';
 
 export const DropdownMenu = () => {
    const pathname = usePathname();
    const [isOpen, setIsOpen] = useState(false);
+   const restPaths: string[] = [
+      navigationPaths.filmSchool.path,
+      navigationPaths.developmentGroups.path,
+      navigationPaths.partners.path,
+      navigationPaths.contact.path,
+      navigationPaths.aboutPlatform.path,
+      navigationPaths.gallery.path,
+   ];
+   const defaultPaths = restPaths.includes(pathname);
    return (
       <DropdownMenuRadix.Root modal={false} onOpenChange={setIsOpen} open={isOpen}>
-         <DropdownMenuRadix.Trigger className='colors-300 group flex rotate-0 items-center px-4 py-1.5 hover:text-metalic lg:py-2.5 xl:px-9'>
+         <DropdownMenuRadix.Trigger className='colors-300 group relative flex rotate-0 items-center gap-2 px-4 py-1.5 hover:text-metalic lg:py-2.5 xl:px-9'>
+            {defaultPaths && (
+               <Dot className='absolute left-1 top-1/2 h-2 w-2 -translate-y-1/2 lg:-left-1 lg:h-3 lg:w-3 xl:left-4' />
+            )}
             <span className=''> Dowiedz się więcej</span>
             <BiChevronDown
                size='2rem'

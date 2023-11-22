@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import { navigationArray } from '@/constants/navigation';
+import { navigationArray, navigationPaths } from '@/constants/navigation';
 import { activeDesktopPathAnimation, desktopAnimation } from '@/animations/nav';
 
 import { DropdownMenu } from './DropdownMenu';
@@ -24,11 +24,10 @@ export const DesktopNav = () => {
       window.addEventListener('scroll', handleScroll);
       return () => window.removeEventListener('scroll', handleScroll);
    }, []);
-   if (!navigationArray.some(({ path }) => path === pathname)) return;
    return (
       <div
-         className={`fixed left-0 right-0 z-50  hidden md:block ${
-            isScroll ? 'bg-lightblack py-2' : 'pt-4'
+         className={`fixed left-0 right-0 py-2 z-50  hidden md:block ${
+            isScroll ? 'bg-lightblack py-2 ' : `py-4 ${pathname !== navigationPaths.home.path && 'bg-lightblack' }` 
          }  transition-all duration-500 `}
       >
          <Wrapper>
@@ -63,7 +62,6 @@ export const DesktopNav = () => {
                   <DropdownMenu />
                </motion.li>
             </ul>
-            {!isScroll && <div className='mt-5 h-[1px] w-full bg-white' />}
          </Wrapper>
       </div>
    );
