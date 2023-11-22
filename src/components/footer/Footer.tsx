@@ -1,10 +1,8 @@
-'use client';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 
-import { navigationArray, navigationPaths } from '@/constants/navigation';
+import { navigationPaths } from '@/constants/navigation';
 
 import { Wrapper } from '../ui/Wrapper';
 import MobileVector from '../../../public/assets/footer/mobile-footer-vector.svg';
@@ -20,14 +18,11 @@ import { buttonVariants } from '../controls/Button';
 
 export const Footer = () => {
    const getYear = new Date().getFullYear();
-   const pathname = usePathname();
-   if (!navigationArray.some(({ path }) => path === pathname)) return;
-   
    return (
-      <footer className='relative overflow-hidden border-none mt-auto bg-lightblack text-white'>
+      <footer className='relative mt-auto overflow-hidden border-none bg-lightblack text-white'>
          <WaveShape />
          <Wrapper className='mb-10 mt-40 flex flex-col items-center gap-20'>
-            <Heading as='h2' title='Myśl globalnie, działaj lokalnie' className='phones:mt-2.5 text-white' />
+            <Heading as='h2' title='Myśl globalnie, działaj lokalnie' className='text-white phones:mt-2.5' />
             <div className='relaitve flex w-full flex-col items-center justify-between gap-10 text-center lg:flex-row'>
                <div className='relative '>
                   <Image

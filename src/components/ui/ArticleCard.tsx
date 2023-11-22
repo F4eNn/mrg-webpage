@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { cn } from '@/utils/cn';
-import { IPartialArticleData } from '@/app/page';
+import { IPartialArticleData } from '@/app/(default-site)/page';
 
 import { Dot } from './Dot';
 import { Heading } from './Heading';
@@ -47,7 +47,7 @@ export const ArticleCard = ({ size, variant, className, articleData, ...props }:
                   alt={alternativeText ?? 'Zdjęcie poglądowe,czego dotyczy artykuł'}
                   width={600}
                   height={600}
-                  className='h-[250px] sm:h-[300px] md:h-[200px] w-full object-cover '
+                  className='h-[250px] w-full object-cover sm:h-[300px] md:h-[200px] '
                />
                <Backdrop className='z-10 bg-black/40' />
             </div>
@@ -68,7 +68,7 @@ export const ArticleCard = ({ size, variant, className, articleData, ...props }:
                alt={alternativeText ?? 'Zdjęcie poglądowe,czego dotyczy artykuł'}
                width={600}
                height={600}
-               className='h-[250px] sm:h-[350px] w-full object-cover'
+               className='h-[250px] w-full object-cover sm:h-[350px]'
             />
             <Backdrop className='z-10 bg-black/40' />
          </div>
@@ -76,7 +76,7 @@ export const ArticleCard = ({ size, variant, className, articleData, ...props }:
             <CreatedTime publishedAt={publishedAt} />
             <div className='space-y-7 '>
                <Heading as='h3' title={tytul} className='my-5 line-clamp-2' />
-               <TextDesc className='line-clamp-3 text-lightGrey text-left'>{krotki_opis}</TextDesc>
+               <TextDesc className='line-clamp-3 text-left text-lightGrey'>{krotki_opis}</TextDesc>
             </div>
          </div>
          <Link

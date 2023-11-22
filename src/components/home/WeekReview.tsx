@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { Wrapper } from '@/components/ui/Wrapper';
-import { RootData } from '@/app/page';
+import { RootData } from '@/app/(default-site)/page';
 
 import { ArticleCard } from '../ui/ArticleCard';
 import { Section } from '../ui/Section';
