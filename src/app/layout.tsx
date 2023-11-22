@@ -3,10 +3,6 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 
-import { DesktopNav } from '@/components/navigation/DesktopNav';
-import { MobileNav } from '@/components/navigation/MobileNav';
-import { Footer } from '@/components/footer/Footer';
-
 const roboto = Roboto({ subsets: ['latin'], weight: ['100', '300', '400', '500', '700'] });
 
 export const metadata: Metadata = {
@@ -16,15 +12,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
    return (
-      <html lang='pl-PL' className='scroll-smooth scroll-pt-[110px]'>
-         <body className={`${roboto.className} bg-white  flex flex-col min-h-screen`}>
-            <nav>
-               <DesktopNav />
-               <MobileNav />
-            </nav>
-            {children}
-            <Footer />
-         </body>
+      <html lang='pl-PL' className='scroll-pt-[110px] scroll-smooth'>
+         <body className={`${roboto.className} flex min-h-screen flex-col bg-white`}>{children}</body>
       </html>
    );
 }

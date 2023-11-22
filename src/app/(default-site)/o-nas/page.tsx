@@ -8,7 +8,7 @@ import { TextDesc } from '@/components/ui/TextDesc';
 import { authors } from '@/components/about-us/about-us-data';
 import { AboutAuthorCard } from '@/components/about-us/AboutAuthorCard';
 
-import heroImg from '../../../public/assets/o-platformie/hero-o-platformie.webp';
+import heroImg from '../../../../public/assets/o-platformie/hero-o-platformie.webp';
 
 const AboutUs = () => {
    return (

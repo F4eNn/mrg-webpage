@@ -17,7 +17,6 @@ const NotFound = () => {
          <p className='text-center'>
             Przepraszamy, nie znaleziono strony z podanym adresem <br /> Wróc do strony głównej.
          </p>
-
          <Link
             className={buttonVariants({ variant: 'secondary', size: 'default', className: 'border-[1px]' })}
             href={navigationPaths.home.path}
