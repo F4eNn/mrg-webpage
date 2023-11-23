@@ -10,6 +10,7 @@ const config: Config = {
             lightBlue: '#bfdbfe',
             yellow: '#facc13',
             white: '#f8f8f8',
+            'custom-blue-500': '#3b82f6',
             lightblack: '#141414',
          },
          screens: {
@@ -17,7 +18,7 @@ const config: Config = {
          },
          fontSize: {
             xxs: '0.625rem',
-            '4xl': ['2.35rem', '2.6rem']
+            '4xl': ['2.35rem', '2.6rem'],
          },
       },
    },
