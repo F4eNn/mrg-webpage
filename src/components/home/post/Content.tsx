@@ -1,61 +1,71 @@
 import React from 'react';
 import Image from 'next/image';
+import parse, { domToReact, HTMLReactParserOptions, Element } from 'html-react-parser';
+import Link from 'next/link';
 
 import { Section } from '@/components/ui/Section';
 import { TextDesc } from '@/components/ui/TextDesc';
 import { Heading } from '@/components/ui/Heading';
-export const PostContent = () => {
+import { IPostData } from '@/app/(default-site)/[...post]/page';
+
+interface IPostContentProps {
+   content: IPostData['zawartosc_posta'];
+}
+
+export const PostContent = ({ content }: IPostContentProps) => {
+
+   const options: HTMLReactParserOptions = {
+      replace(domNode) {
+         if (domNode instanceof Element) {
+            switch (domNode.name) {
+               case 'p':
+                  return <TextDesc className='sm:text-left'>{domToReact(domNode.children, options)}</TextDesc>;
+               case 'h2':
+               case 'h3':
+                  return (
+                     <Heading className='sm:text-left' as={domNode.name}>
+                        {domToReact(domNode.children, options)}
+                     </Heading>
+                  );
+               case 'ol':
+                  return (
+                     <ul className='ml-7 sm:ml-12 list-decimal space-y-5 text-sm font-[500] text-lightGrey phones:text-lg'>
+                        {domToReact(domNode.children, options)}
+                     </ul>
+                  );
+               case 'ul':
+                  return (
+                     <ul className='ml-7 sm:ml-12 list-disc space-y-5 text-sm font-[500] text-lightGrey phones:text-lg'>
+                        {domToReact(domNode.children, options)}
+                     </ul>
+                  );
+               case 'img':
+                  const { src, alt } = domNode.attribs;
+                  return (
+                     <Image
+                        src={src}
+                        alt={alt}
+                        width={900}
+                        height={600}
+                        className='max-h-[500px] w-full object-cover rounded-sm'
+                        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw'
+                     />
+                  );
+               case 'a':
+                  const { href } = domNode.attribs;
+
+                  return (
+                     <Link href={href} className='colors-300 text-custom-blue-500 hover:text-custom-blue-500/75'>
+                        {domToReact(domNode.children, options)}
+                     </Link>
+                  );
+            }
+         }
+      },
+   };
    return (
       <Section size={'none'} className='space-y-12 text-lightGrey'>
-         <TextDesc className='text-center sm:text-left'>
-            orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys
-            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-         </TextDesc>
-         <TextDesc className='sm:text-left'>
-            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
-            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
-            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
-            Aldus PageMaker including versions of Lorem Ipsum.
-         </TextDesc>
-         <Heading className='sm:text-left' as='h2' title='Orem Impsum is simply' />
-         <TextDesc className='sm:text-left'>
-            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
-            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
-            Aldus PageMaker including versions of Lorem Ipsum.
-         </TextDesc>
-         <Heading as='h3' className='sm:text-left' title='cluding versions of Lorem Ipsum.' />
-         <ul className='list-disc space-y-5 font-[500] text-lightblack'>
-            <li className='ml-7 sm:ml-14'>Aldus PageMaker including versions of Lorem Ipsum.</li>
-            <li className='ml-7 sm:ml-14'>Aldus PageMaker including versions of Lorem Ipsum.</li>
-            <li className='ml-7 sm:ml-14'>Aldus PageMaker including versions of Lorem Ipsum.</li>
-            <li className='ml-7 sm:ml-14'>Aldus PageMaker including versions of Lorem Ipsum.</li>
-            <li className='ml-7 sm:ml-14'>Aldus PageMaker including versions of Lorem Ipsum.</li>
-         </ul>
-         <Heading className='sm:text-left' as='h2' title='remaining essentially unchanged.' />
-         <TextDesc className='sm:text-left'>
-            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
-            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
-            Aldus PageMaker including versions of Lorem Ipsum.
-         </TextDesc>
-         <Heading className='sm:text-left' as='h3' title='remaining essentially unchanged.' />
-         <Image src='/dummy.jpg' width={800} height={500} alt='' className='max-h-[450px] w-full object-cover' />
-         <TextDesc className='sm:text-left'>
-            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
-            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-         </TextDesc>
-         <ol className='list-decimal space-y-5 font-[500] text-lightblack'>
-            <li className='ml-7 sm:ml-14'>Aldus PageMaker including versions of Lorem Ipsum.</li>
-            <li className='ml-7 sm:ml-14'>Aldus PageMaker including versions of Lorem Ipsum.</li>
-            <li className='ml-7 sm:ml-14'>Aldus PageMaker including versions of Lorem Ipsum.</li>
-            <li className='ml-7 sm:ml-14'>Aldus PageMaker including versions of Lorem Ipsum.</li>
-            <li className='ml-7 sm:ml-14'>Aldus PageMaker including versions of Lorem Ipsum.</li>
-         </ol>
-         <TextDesc className='sm:text-left'>
-            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
-            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
-            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
-            Aldus PageMaker including versions of Lorem Ipsum.
-         </TextDesc>
+         {parse(content, options)}
       </Section>
    );
 };
