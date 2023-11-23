@@ -19,7 +19,7 @@ import { buttonVariants } from '../controls/Button';
 export const Footer = () => {
    const getYear = new Date().getFullYear();
    return (
-      <footer  className='relative mt-auto overflow-hidden border-none bg-lightblack text-white'>
+      <footer className='relative mt-auto overflow-hidden border-none bg-lightblack text-white'>
          <WaveShape />
          <Wrapper className='mb-10 mt-40 flex flex-col items-center gap-20'>
             <Heading as='h2' title='Myśl globalnie, działaj lokalnie' className='text-white phones:mt-2.5' />

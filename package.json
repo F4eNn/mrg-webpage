@@ -23,6 +23,7 @@
     "react-countup": "^6.5.0",
     "react-dom": "^18",
     "react-icons": "^4.11.0",
+    "sharp": "^0.32.6",
     "tailwind-merge": "^2.0.0"
   },
   "devDependencies": {
