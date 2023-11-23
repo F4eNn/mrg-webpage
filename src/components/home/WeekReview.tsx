@@ -3,14 +3,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { Wrapper } from '@/components/ui/Wrapper';
-import { RootData } from '@/app/(default-site)/page';
+import { IPartialArticleData, RootDataType } from '@/app/(default-site)/page';
 
 import { ArticleCard } from '../ui/ArticleCard';
 import { Section } from '../ui/Section';
 import { Heading } from '../ui/Heading';
 import { Backdrop } from '../ui/Backdrop';
 
-export const WeekReview = ({ articleData }: { articleData: RootData[] }) => {
+export const WeekReview = ({ articleData }: { articleData: RootDataType<IPartialArticleData>[] }) => {
    return (
       <Section id='przeglad-tygodnia'>
          <Wrapper>
