@@ -39,7 +39,10 @@ export const ArticleCard = ({ size, variant, className, articleData, ...props }:
 
    if (variant === 'fresh') {
       return (
-         <Link href={`/artykul/${slug}`} className={cn(cardVariants({ size, variant, className }))}>
+         <Link
+            href={{ pathname: `/artykul/${slug}`, query: { isNew: false } }}
+            className={cn(cardVariants({ size, variant, className }))}
+         >
             <div className='relative'>
                <Image
                   src={`${url}`}
@@ -53,7 +56,7 @@ export const ArticleCard = ({ size, variant, className, articleData, ...props }:
             </div>
             <div className='mb-5 space-y-9 px-4 py-6 md:p-6 '>
                <CreatedTime publishedAt={publishedAt} isNew={false} />
-               <Heading as='h3' title={tytul} className='my-5 text-left line-clamp-2' />
+               <Heading as='h3' title={tytul} className='my-5 line-clamp-2 text-left' />
             </div>
          </Link>
       );
@@ -75,7 +78,7 @@ export const ArticleCard = ({ size, variant, className, articleData, ...props }:
          <div className='space-y-9 px-4  py-6 md:p-6'>
             <CreatedTime publishedAt={publishedAt} />
             <div className='space-y-7 '>
-               <Heading as='h3' title={tytul} className='my-5 text-left line-clamp-2' />
+               <Heading as='h3' title={tytul} className='my-5 line-clamp-2 text-left' />
                <TextDesc className='line-clamp-3 text-left text-lightGrey'>{krotki_opis}</TextDesc>
             </div>
          </div>
@@ -85,7 +88,7 @@ export const ArticleCard = ({ size, variant, className, articleData, ...props }:
                size: 'tracking',
                className: 'group flex items-center justify-between ',
             })}
-            href={`/artykul/${slug}`}
+            href={{ pathname: `/artykul/${slug}`, query: { isNew: true } }}
          >
             Zobacz więcej
             <ArrowIcon className='colors-300 stroke-lightblack group-hover:stroke-white' />
