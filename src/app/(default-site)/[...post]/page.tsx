@@ -68,7 +68,7 @@ const PostPage = async ({ params }: { params: { post: string[] } }) => {
          <Wrapper className='grid grid-cols-2 gap-10 lg:grid-cols-4'>
             <article className='col-span-3 space-y-16 '>
                <PostHeader publishedAt={publishedAt} title={tytul} main_picture={zdjecie_glowne} />
-               <PostContent />
+               <PostContent content={zawartosc_posta} />
                <PostGallery />
             </article>
             <div className="relative col-span-3 mt-16 after:absolute after:-left-5 after:bottom-0 after:h-full after:w-[1px] after:bg-lightGrey/50 after:content-[''] lg:col-auto lg:mt-48">
