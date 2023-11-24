@@ -35,10 +35,10 @@ export const PostHeader = ({ publishedAt, title, main_picture, blurderPicture }:
                   placeholder='blur'
                   width={width}
                   height={height}
-                  priority={true}
                   sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw'
                   alt={alt ?? 'Wydarzenie przedstawione w artykule'}
                   className='max-h-[500px] w-full object-cover'
+                  priority
                />
             </div>
          </div>

@@ -13,7 +13,6 @@ interface IPostContentProps {
 }
 
 export const PostContent = ({ content }: IPostContentProps) => {
-
    const options: HTMLReactParserOptions = {
       replace(domNode) {
          if (domNode instanceof Element) {
@@ -29,13 +28,13 @@ export const PostContent = ({ content }: IPostContentProps) => {
                   );
                case 'ol':
                   return (
-                     <ul className='ml-7 sm:ml-12 list-decimal space-y-5 text-sm font-[500] text-lightGrey phones:text-lg'>
+                     <ul className='ml-7 list-decimal space-y-5 text-sm font-[500] text-lightGrey phones:text-lg sm:ml-12'>
                         {domToReact(domNode.children, options)}
                      </ul>
                   );
                case 'ul':
                   return (
-                     <ul className='ml-7 sm:ml-12 list-disc space-y-5 text-sm font-[500] text-lightGrey phones:text-lg'>
+                     <ul className='ml-7 list-disc space-y-5 text-sm font-[500] text-lightGrey phones:text-lg sm:ml-12'>
                         {domToReact(domNode.children, options)}
                      </ul>
                   );
