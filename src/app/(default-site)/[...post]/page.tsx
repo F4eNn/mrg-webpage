@@ -12,7 +12,7 @@ import { getBase64, getBase64ForAllImg } from '@/utils/blurDataUrl';
 
 import { RootDataType } from '../page';
 
-interface ImageType {
+export interface ImageType {
    url: string;
    alt: string;
    width: number;
@@ -34,10 +34,13 @@ export interface IPostData {
 
 const getPost = async (param: string) => {
    try {
-      const res = await fetch(`${BACKEND_URL_API}/slugify/slugs/home-post/${param}?populate=*`, {
-         cache: 'no-cache',
-         headers: { Authorization: `Bearer ${API_TOKEN}` },
-      });
+      const res = await fetch(
+         `${BACKEND_URL_API}/slugify/slugs/home-post/${param}?populate[zdjecie_glowne][fields][0]=url&populate[zdjecie_glowne][fields][1]=width&populate[zdjecie_glowne][fields][2]=height&populate[zdjecie_glowne][fields][3]=alternativeText&populate[galeria][fields][0]=url&populate[galeria][fields][1]=width&populate[galeria][fields][2]=height&populate[galeria][fields][3]=alternativeText`,
+         {
+            cache: 'no-cache',
+            headers: { Authorization: `Bearer ${API_TOKEN}` },
+         },
+      );
       if (res.status === 404) {
          throw new Error('404');
       }
@@ -68,8 +71,8 @@ const PostPage = async ({ params }: { params: { post: string[] } }) => {
    const { publishedAt, tytul, zawartosc_posta, zdjecie_glowne, galeria } = data.attributes;
 
    const blurderMainPicutre = await getBase64(zdjecie_glowne.data.attributes.url);
-   const galleryWithBluredUrl = await getBase64ForAllImg(galeria)
-   
+   const galleryWithBluredUrl = await getBase64ForAllImg(galeria);
+
    return (
       <main className='mb-32'>
          <Wrapper className='grid grid-cols-2 gap-10 lg:grid-cols-4'>
@@ -81,7 +84,7 @@ const PostPage = async ({ params }: { params: { post: string[] } }) => {
                   blurderPicture={blurderMainPicutre}
                />
                <PostContent content={zawartosc_posta} />
-               <PostGallery />
+               <PostGallery gallery={galleryWithBluredUrl} />
             </article>
             <div className="relative col-span-3 mt-16 after:absolute after:-left-5 after:bottom-0 after:h-full after:w-[1px] after:bg-lightGrey/50 after:content-[''] lg:col-auto lg:mt-48">
                <Aside />
