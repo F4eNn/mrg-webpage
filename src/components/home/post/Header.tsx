@@ -12,12 +12,14 @@ import { Backdrop } from '@/components/ui/Backdrop';
 interface IPostHeaderTypes extends Pick<IPostData, 'publishedAt'> {
    title: IPostData['tytul'];
    main_picture: IPostData['zdjecie_glowne'];
+   blurderPicture: string | undefined;
 }
 
-export const PostHeader = ({ publishedAt, title, main_picture }: IPostHeaderTypes) => {
-   const { alt, hash, height, url, width } = main_picture.data.attributes;
+export const PostHeader = ({ publishedAt, title, main_picture, blurderPicture }: IPostHeaderTypes) => {
+   const { alt, height, url, width } = main_picture.data.attributes;
    const { get } = useSearchParams();
    const isNew = get('isNew') === 'true';
+
    return (
       <Section size={'none'} className='mt-28 md:mt-48'>
          <div className='space-y-14 '>
@@ -29,7 +31,8 @@ export const PostHeader = ({ publishedAt, title, main_picture }: IPostHeaderType
                <Backdrop className='z-20 bg-black/30' />
                <Image
                   src={url}
-                  blurDataURL={hash}
+                  blurDataURL={blurderPicture}
+                  placeholder='blur'
                   width={width}
                   height={height}
                   priority={true}

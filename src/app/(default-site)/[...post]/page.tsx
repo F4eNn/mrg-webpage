@@ -8,6 +8,7 @@ import { PostGallery } from '@/components/home/post/Gallery';
 import { Aside } from '@/components/home/post/Aside';
 import { API_TOKEN, BACKEND_URL_API } from '@/constants/config';
 import { getErrorMessage } from '@/utils/getErrorMessage';
+import { getBase64 } from '@/utils/blurDataUrl';
 
 import { RootDataType } from '../page';
 
@@ -19,7 +20,6 @@ export interface IPostData {
       data: {
          attributes: {
             url: string;
-            hash: string;
             alt: string;
             width: number;
             height: number;
@@ -63,11 +63,18 @@ const PostPage = async ({ params }: { params: { post: string[] } }) => {
    }
    const { publishedAt, tytul, zawartosc_posta, zdjecie_glowne } = data.attributes;
 
+   const blurderMainPicutre = await getBase64(zdjecie_glowne.data.attributes.url);
+
    return (
       <main className='mb-32'>
          <Wrapper className='grid grid-cols-2 gap-10 lg:grid-cols-4'>
             <article className='col-span-3 space-y-16 '>
-               <PostHeader publishedAt={publishedAt} title={tytul} main_picture={zdjecie_glowne} />
+               <PostHeader
+                  publishedAt={publishedAt}
+                  title={tytul}
+                  main_picture={zdjecie_glowne}
+                  blurderPicture={blurderMainPicutre}
+               />
                <PostContent content={zawartosc_posta} />
                <PostGallery />
             </article>
