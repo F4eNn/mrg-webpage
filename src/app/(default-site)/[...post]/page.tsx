@@ -8,9 +8,17 @@ import { PostGallery } from '@/components/home/post/Gallery';
 import { Aside } from '@/components/home/post/Aside';
 import { API_TOKEN, BACKEND_URL_API } from '@/constants/config';
 import { getErrorMessage } from '@/utils/getErrorMessage';
-import { getBase64 } from '@/utils/blurDataUrl';
+import { getBase64, getBase64ForAllImg } from '@/utils/blurDataUrl';
 
 import { RootDataType } from '../page';
+
+interface ImageType {
+   url: string;
+   alt: string;
+   width: number;
+   height: number;
+   blurDataUrl: string | undefined;
+}
 
 export interface IPostData {
    zawartosc_posta: string;
@@ -18,14 +26,10 @@ export interface IPostData {
    publishedAt: string;
    zdjecie_glowne: {
       data: {
-         attributes: {
-            url: string;
-            alt: string;
-            width: number;
-            height: number;
-         };
+         attributes: ImageType;
       };
    };
+   galeria: { data: RootDataType<ImageType>[] };
 }
 
 const getPost = async (param: string) => {
@@ -61,10 +65,11 @@ const PostPage = async ({ params }: { params: { post: string[] } }) => {
       }
       throw new Error(data.errMsg);
    }
-   const { publishedAt, tytul, zawartosc_posta, zdjecie_glowne } = data.attributes;
+   const { publishedAt, tytul, zawartosc_posta, zdjecie_glowne, galeria } = data.attributes;
 
    const blurderMainPicutre = await getBase64(zdjecie_glowne.data.attributes.url);
-
+   const galleryWithBluredUrl = await getBase64ForAllImg(galeria)
+   
    return (
       <main className='mb-32'>
          <Wrapper className='grid grid-cols-2 gap-10 lg:grid-cols-4'>
