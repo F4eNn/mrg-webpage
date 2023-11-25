@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { FaAnglesDown } from 'react-icons/fa6';
+import dynamic from 'next/dynamic';
 
 import { Section } from '@/components/ui/Section';
 import { RootDataType } from '@/app/(default-site)/page';
@@ -9,8 +10,9 @@ import { ImageType } from '@/app/(default-site)/[...post]/page';
 import { Button } from '@/components/controls/Button';
 import { Backdrop } from '@/components/ui/Backdrop';
 
-import { Slider } from './Slider';
 import { GalleryImageMap } from './GalleryImageMap';
+
+const Slider = dynamic(() => import('./Slider').then(mod => mod.Slider), { loading: () => <p>loading...</p>, ssr: false });
 
 export interface IPostGallery {
    gallery: RootDataType<ImageType>[];
@@ -46,7 +48,7 @@ export const PostGallery = ({ gallery }: IPostGallery) => {
       setCurrentIdx(prev => (step === 'next' ? prev + 1 : prev - 1));
    };
 
-   const handleShowMore = () => setShowMore(true)
+   const handleShowMore = () => setShowMore(true);
 
    useEffect(() => {
       const showNewImage = () => {
@@ -78,13 +80,15 @@ export const PostGallery = ({ gallery }: IPostGallery) => {
                </Button>
             )}
          </div>
-         <Slider
-            changeImage={handleChangeImage}
-            closeSlider={handleCloseSlider}
-            currentIdx={currentIdx}
-            galleryLength={gallery.length}
-            sliderData={sliderData}
-         />
+         {sliderData.isOpen && (
+            <Slider
+               changeImage={handleChangeImage}
+               closeSlider={handleCloseSlider}
+               currentIdx={currentIdx}
+               galleryLength={gallery.length}
+               sliderData={sliderData}
+            />
+         )}
       </Section>
    );
 };
