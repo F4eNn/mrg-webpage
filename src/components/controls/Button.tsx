@@ -4,7 +4,7 @@ import { VariantProps, cva } from 'class-variance-authority';
 import { cn } from '@/utils/cn';
 
 const buttonVariants = cva(
-   "active:scale-95 transition-all  duration-300 relative after:absolute z-0 after:bottom-0 overflow-hidden rounded-[10px] hover:after:h-full after:left-0 after:-z-10 after:h-0 after:w-full  after:transition-all after:duration-500 after:content-[''] ",
+   "active:scale-95 transition-all duration-300 relative after:absolute z-0 after:bottom-0 disabled:active:scale-100 disabled:text-lightblack/50 disabled:after:hover:h-0 overflow-hidden rounded-[10px] hover:after:h-full after:left-0 after:-z-10 after:h-0 after:w-full  after:transition-all after:duration-500 after:content-[''] ",
    {
       variants: {
          variant: {
@@ -12,6 +12,7 @@ const buttonVariants = cva(
             secondary: ' border-lightGrey border-[1px] hover:border-lightblack hover:text-white after:bg-lightblack ',
             borderTop:
                'border-t-[1px] border-lightGrey  hover:border-lightblack hover:text-white after:bg-lightblack rounded-none',
+            borderOnHover: 'hover:border-yellow border-[2px] transition-all duration-300',
          },
          size: {
             default: 'px-10 py-3.5 text-lg font-bold',
