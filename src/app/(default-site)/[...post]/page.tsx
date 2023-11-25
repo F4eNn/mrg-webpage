@@ -85,7 +85,7 @@ const PostPage = async ({ params }: { params: { post: string[] } }) => {
                   blurderPicture={blurderMainPicutre}
                />
                <PostContent content={zawartosc_posta} />
-               <PostGallery gallery={galleryWithBluredUrl} />
+               {/* <PostGallery gallery={galleryWithBluredUrl} /> */}
             </article>
             <div className="relative col-span-3 mt-16 after:absolute after:-left-5 after:bottom-0 after:h-full after:w-[1px] after:bg-lightGrey/50 after:content-[''] lg:col-auto lg:mt-48">
                <Aside />
