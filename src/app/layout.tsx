@@ -13,7 +13,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
    return (
       <html lang='pl-PL' className='scroll-pt-[110px] scroll-smooth'>
-         <body className={`${roboto.className} flex min-h-screen flex-col bg-white`}>{children}</body>
+         <body className={`${roboto.className} flex min-h-screen flex-col bg-white`}>
+            {children}
+            <div id='gallery-slider-modal' />
+         </body>
       </html>
    );
 }

@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { PostHeader } from '@/components/home/post/Header';
 import { Wrapper } from '@/components/ui/Wrapper';
 import { PostContent } from '@/components/home/post/Content';
-import { PostGallery } from '@/components/home/post/Gallery';
+import { PostGallery } from '@/components/home/post/gallery/Gallery';
 import { Aside } from '@/components/home/post/Aside';
 import { API_TOKEN, BACKEND_URL_API } from '@/constants/config';
 import { getErrorMessage } from '@/utils/getErrorMessage';
