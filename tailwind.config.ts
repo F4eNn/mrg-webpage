@@ -20,8 +20,14 @@ const config: Config = {
             xxs: '0.625rem',
             '4xl': ['2.35rem', '2.6rem'],
          },
+         gridTemplateColumns: {
+            'gallery-lg': 'repeat(auto-fit, minmax(275px, 1fr))',
+            'gallery-sm': '1fr',
+            'slider-lg': '100px  1fr 100px',
+         },
       },
    },
+
    plugins: [],
 };
 export default config;
