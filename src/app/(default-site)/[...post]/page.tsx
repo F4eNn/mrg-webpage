@@ -35,7 +35,7 @@ export interface IPostData {
 const getPost = async (param: string) => {
    try {
       const res = await fetch(
-         `${BACKEND_URL_API}/slugify/slugs/home-post/${param}?populate[zdjecie_glowne][fields][0]=url&populate[zdjecie_glowne][fields][1]=width&populate[zdjecie_glowne][fields][2]=height&populate[zdjecie_glowne][fields][3]=alternativeText&populate[galeria][fields][0]=url&populate[galeria][fields][1]=width&populate[galeria][fields][2]=height&populate[galeria][fields][3]=alternativeText`,
+         `${BACKEND_URL_API}/slugify/slugs/home-post/${param}?populate=*`,
          {
             cache: 'no-cache',
             headers: { Authorization: `Bearer ${API_TOKEN}` },
@@ -53,6 +53,7 @@ const getPost = async (param: string) => {
       const { data }: { data: RootDataType<IPostData> } = await res.json();
       return data;
    } catch (err: unknown) {
+      console.error(err)
       return {
          errMsg: getErrorMessage(err),
       };
