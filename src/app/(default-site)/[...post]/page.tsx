@@ -75,6 +75,7 @@ const PostPage = async ({ params }: { params: { post: string[] } }) => {
    const blurderMainPicutre = await getBase64(zdjecie_glowne.data.attributes.url);
    const galleryWithBluredUrl = await getBase64ForAllImg(galeria);
 
+
    return (
       <main className='mb-32'>
          <Wrapper className='grid grid-cols-2 gap-10 lg:grid-cols-4'>

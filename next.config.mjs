@@ -16,9 +16,6 @@ const nextConfig = {
          { hostname: 'res.cloudinary.com', pathname: `/${process.env.NEXT_CLOUDINARY_NAME}/**`, protocol: 'https' },
       ],
    },
-   experimental: {
-      webpackBuildWorker: true,
-   },
 };
 
 export default withPlaiceholder(nextConfig);
