@@ -6,9 +6,8 @@ import { Wrapper } from '@/components/ui/Wrapper';
 import { PostContent } from '@/components/home/post/Content';
 import { PostGallery } from '@/components/home/post/gallery/Gallery';
 import { Aside } from '@/components/home/post/Aside';
-import { API_TOKEN, BACKEND_URL_API } from '@/constants/config';
-import { getErrorMessage } from '@/utils/getErrorMessage';
 import { getBase64, getBase64ForAllImg } from '@/utils/blurDataUrl';
+import { fetchAPI } from '@/utils/fetch-api';
 
 import { RootDataType } from '../page';
 
@@ -38,44 +37,35 @@ export interface IPostData {
    galeria: { data: { id: number; attributes: FormatType }[] };
 }
 
-const getPost = async (param: string): Promise<RootDataType<IPostData> | { errMsg: string }> => {
-   try {
-      const res = await fetch(
-         `${BACKEND_URL_API}/slugify/slugs/home-post/${param}?fields[0]=zawartosc_posta&fields[1]=tytul&fields[2]=publishedAt&populate[zdjecie_glowne][fields][0]=formats&populate[galeria][fields][0]=formats`,
-         {
-            headers: { Authorization: `Bearer ${API_TOKEN}` },
-         },
-      );
-      if (res.status === 404) {
-         throw new Error('404');
-      }
-      if (res.status === 403 || res.status === 500 || res.status === 401) {
-         throw new Error('Wykryto błąd po stronie serwera, spróbuj ponownie lub wróć do strony głównej.');
-      }
-      if (!res.ok) {
-         throw new Error('Wykryto nieoczekiwany błąd, spróbuj ponownie lub wróć do strony głównej.');
-      }
-      const { data }: { data: RootDataType<IPostData> } = await res.json();
-      return data;
-   } catch (err: unknown) {
-      return {
-         errMsg: getErrorMessage(err),
-      };
-   }
+export interface IFetchResult<T> {
+   data: RootDataType<T> | undefined;
+   errMsg: string | undefined;
+}
+
+const getPost = async (param: string): Promise<IFetchResult<IPostData>> => {
+   const urlParamsObject = {
+      populate: {
+         zdjecie_glowne: { fields: ['formats'] },
+         galeria: { fields: ['formats'] },
+      },
+      fields: ['tytul', 'zawartosc_posta', 'publishedAt'],
+   };
+
+   const { data, errMsg } = await fetchAPI(`/slugify/slugs/home-post/${param}`, urlParamsObject);
+   return { data, errMsg };
 };
 
 const PostPage = async ({ params }: { params: { post: string[] } }) => {
    if (params.post[1] === undefined) return null;
 
-   const data = await getPost(params.post[1]);
-
-   if ('errMsg' in data) {
-      if (data.errMsg === '404') {
+   const { data, errMsg } = await getPost(params.post[1]);
+   if (errMsg) {
+      if (errMsg === '404') {
          notFound();
       }
-      throw new Error(data.errMsg);
+      throw new Error(errMsg);
    }
-   const { publishedAt, tytul, zawartosc_posta, zdjecie_glowne, galeria } = data.attributes;
+   const { publishedAt, tytul, zawartosc_posta, zdjecie_glowne, galeria } = data!.attributes;
 
    const blurderMainPicutre = await getBase64(zdjecie_glowne.data.attributes.formats.large.url);
    const galleryWithBluredUrl = await getBase64ForAllImg(galeria);
