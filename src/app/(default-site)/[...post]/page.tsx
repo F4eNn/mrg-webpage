@@ -12,6 +12,8 @@ import { getBase64, getBase64ForAllImg } from '@/utils/blurDataUrl';
 
 import { RootDataType } from '../page';
 
+export const revalidate = 86400;
+
 export interface ImageType {
    url: string;
    alt: string;
@@ -20,24 +22,27 @@ export interface ImageType {
    blurDataUrl: string | undefined;
 }
 
+export interface FormatType {
+   formats: { large: ImageType };
+}
+
 export interface IPostData {
    zawartosc_posta: string;
    tytul: string;
    publishedAt: string;
    zdjecie_glowne: {
       data: {
-         attributes: ImageType;
+         attributes: FormatType;
       };
    };
-   galeria: { data: RootDataType<ImageType>[] };
+   galeria: { data: { id: number; attributes: FormatType }[] };
 }
 
 const getPost = async (param: string): Promise<RootDataType<IPostData> | { errMsg: string }> => {
    try {
       const res = await fetch(
-         `${BACKEND_URL_API}/slugify/slugs/home-post/${param}?populate[zdjecie_glowne][fields][0]=url&populate[zdjecie_glowne][fields][1]=width&populate[zdjecie_glowne][fields][2]=height&populate[zdjecie_glowne][fields][3]=alternativeText&populate[galeria][fields][0]=url&populate[galeria][fields][1]=width&populate[galeria][fields][2]=height&populate[galeria][fields][3]=alternativeText`,
+         `${BACKEND_URL_API}/slugify/slugs/home-post/${param}?fields[0]=zawartosc_posta&fields[1]=tytul&fields[2]=publishedAt&populate[zdjecie_glowne][fields][0]=formats&populate[galeria][fields][0]=formats`,
          {
-            cache: 'no-cache',
             headers: { Authorization: `Bearer ${API_TOKEN}` },
          },
       );
@@ -72,10 +77,8 @@ const PostPage = async ({ params }: { params: { post: string[] } }) => {
    }
    const { publishedAt, tytul, zawartosc_posta, zdjecie_glowne, galeria } = data.attributes;
 
-   const blurderMainPicutre = await getBase64(zdjecie_glowne.data.attributes.url);
+   const blurderMainPicutre = await getBase64(zdjecie_glowne.data.attributes.formats.large.url);
    const galleryWithBluredUrl = await getBase64ForAllImg(galeria);
-
-
    return (
       <main className='mb-32'>
          <Wrapper className='grid grid-cols-2 gap-10 lg:grid-cols-4'>
