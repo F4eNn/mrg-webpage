@@ -23,12 +23,12 @@ export const GalleryImageMap = ({ gallery, handleOpen, showMore }: GalleryMapTyp
                   }}
                >
                   <Image
-                     src={attributes.url}
+                     src={attributes.formats.large.url}
                      placeholder='blur'
-                     blurDataURL={attributes.blurDataUrl}
+                     blurDataURL={attributes.formats.large.blurDataUrl}
                      width={500}
                      height={300}
-                     alt={attributes.alt ?? 'Zdjęcie przedstawiające wydarzenie opisane w artykule'}
+                     alt={attributes.formats.large.alt ?? 'Zdjęcie przedstawiające wydarzenie opisane w artykule'}
                      className='h-full  w-full  object-cover'
                   />
                </Button>

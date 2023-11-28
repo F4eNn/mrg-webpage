@@ -5,17 +5,19 @@ import { FaAnglesDown } from 'react-icons/fa6';
 import dynamic from 'next/dynamic';
 
 import { Section } from '@/components/ui/Section';
-import { RootDataType } from '@/app/(default-site)/page';
-import { ImageType } from '@/app/(default-site)/[...post]/page';
+import { FormatType, ImageType } from '@/app/(default-site)/[...post]/page';
 import { Button } from '@/components/controls/Button';
 import { Backdrop } from '@/components/ui/Backdrop';
 
 import { GalleryImageMap } from './GalleryImageMap';
 
-const Slider = dynamic(() => import('./Slider').then(mod => mod.Slider), { loading: () => <p>loading...</p>, ssr: false });
+const Slider = dynamic(() => import('./Slider').then(mod => mod.Slider), {
+   loading: () => <p>loading...</p>,
+   ssr: false,
+});
 
 export interface IPostGallery {
-   gallery: RootDataType<ImageType>[];
+   gallery: { id: number; attributes: FormatType }[];
 }
 
 export type SliderDataTypes = ImageType & {
@@ -36,7 +38,7 @@ export const PostGallery = ({ gallery }: IPostGallery) => {
 
    const handleOpenSlider = (idx: number) => {
       const { attributes } = gallery[idx];
-      setSliderData({ isOpen: true, ...attributes });
+      setSliderData({ isOpen: true, ...attributes.formats.large });
       setCurrentIdx(idx);
    };
 
@@ -53,13 +55,12 @@ export const PostGallery = ({ gallery }: IPostGallery) => {
    useEffect(() => {
       const showNewImage = () => {
          const { attributes } = gallery[currentIdx];
-         setSliderData(prev => ({ ...prev, ...attributes }));
+         setSliderData(prev => ({ ...prev, ...attributes.formats.large }));
       };
       showNewImage();
       return () => {};
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [currentIdx]);
-
    return (
       <Section id='gallery' className='pt-12'>
          <div id='gallery-map' className='grid-post-gallery grid-cols-gallery-sm sm:grid-cols-gallery-lg'>
@@ -67,10 +68,10 @@ export const PostGallery = ({ gallery }: IPostGallery) => {
             {gallery.length > 7 && !showMore && (
                <Button onClick={handleShowMore} variant={'borderOnHover'} className='group relative    '>
                   <Image
-                     src={gallery[7].attributes.url}
+                     src={gallery[7].attributes.formats.large.url}
                      alt=''
-                     width={gallery[7].attributes.width}
-                     height={gallery[7].attributes.height}
+                     width={gallery[7].attributes.formats.large.width}
+                     height={gallery[7].attributes.formats.large.height}
                      className='h-full w-full object-cover blur-md'
                   />
                   <Backdrop className='z-20 bg-black/60' />

@@ -16,10 +16,9 @@ interface IPostHeaderTypes extends Pick<IPostData, 'publishedAt'> {
 }
 
 export const PostHeader = ({ publishedAt, title, main_picture, blurderPicture }: IPostHeaderTypes) => {
-   const { alt, height, url, width } = main_picture.data.attributes;
+   const { alt, height, url, width } = main_picture.data.attributes.formats.large;
    const { get } = useSearchParams();
    const isNew = get('isNew') === 'true';
-
    return (
       <Section size={'none'} className='mt-28 md:mt-48'>
          <div className='space-y-14 '>
