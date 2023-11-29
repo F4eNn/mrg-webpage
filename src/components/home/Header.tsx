@@ -1,3 +1,4 @@
+'use client'
 import React from 'react';
 import { AiOutlineArrowDown } from 'react-icons/ai';
 import Image from 'next/image';
@@ -14,10 +15,11 @@ export const Header = () => {
          <div>
             <video
                autoPlay
+               poster='./assets/home/poster.webp'
                loop
                playsInline
                muted
-               className='absolute inset-0 -z-10 h-full w-full bg-blue-500/70 object-cover'
+               className='absolute inset-0 -z-10 h-full w-full object-cover'
             >
                <source src='/assets/hero.mp4' type='video/mp4' />
             </video>
