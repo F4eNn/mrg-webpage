@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { cn } from '@/utils/cn';
-import { IPartialArticleData } from '@/app/(default-site)/page';
 
 import { Dot } from './Dot';
 import { Heading } from './Heading';
@@ -12,6 +11,7 @@ import { TextDesc } from './TextDesc';
 import { buttonVariants } from '../controls/Button';
 import ArrowIcon from '../../../public/assets/share/right-arrow.svg';
 import { Backdrop } from './Backdrop';
+import { IPartialArticleData } from '../home/WeekReview';
 
 const cardVariants = cva('rounded-sm overflow-hidden  mx-auto bg-white shadow-md', {
    variants: {
@@ -35,8 +35,7 @@ interface ArticleCardProps extends VariantProps<typeof cardVariants>, ComponentP
 
 export const ArticleCard = ({ size, variant, className, articleData, ...props }: ArticleCardProps) => {
    const { krotki_opis, publishedAt, slug, tytul, zdjecie_glowne } = articleData;
-   const { alternativeText, hash, url } = zdjecie_glowne.data.attributes;
-
+   const { alt, url } = zdjecie_glowne.data.attributes.formats.large;
    if (variant === 'fresh') {
       return (
          <Link
@@ -46,8 +45,7 @@ export const ArticleCard = ({ size, variant, className, articleData, ...props }:
             <div className='relative'>
                <Image
                   src={`${url}`}
-                  blurDataURL={hash}
-                  alt={alternativeText ?? 'Zdjęcie poglądowe,czego dotyczy artykuł'}
+                  alt={alt ?? 'Zdjęcie poglądowe,czego dotyczy artykuł'}
                   width={600}
                   height={600}
                   className='h-[250px] w-full object-cover sm:h-[300px] md:h-[200px] '
@@ -67,8 +65,7 @@ export const ArticleCard = ({ size, variant, className, articleData, ...props }:
          <div className='relative'>
             <Image
                src={`${url}`}
-               blurDataURL={hash}
-               alt={alternativeText ?? 'Zdjęcie poglądowe,czego dotyczy artykuł'}
+               alt={alt ?? 'Zdjęcie poglądowe,czego dotyczy artykuł'}
                width={600}
                height={600}
                className='h-[250px] w-full object-cover sm:h-[350px]'

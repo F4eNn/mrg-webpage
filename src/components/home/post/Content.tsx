@@ -46,8 +46,8 @@ export const PostContent = ({ content }: IPostContentProps) => {
                         alt={alt}
                         width={900}
                         height={600}
-                        className='max-h-[500px] w-full object-cover rounded-sm'
-                        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw'
+                        className='max-h-[600px] w-full mx-auto object-contain rounded-sm'
+                        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw'
                      />
                   );
                case 'a':

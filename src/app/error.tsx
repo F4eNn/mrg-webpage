@@ -1,5 +1,4 @@
 'use client';
-import Link from 'next/link';
 
 import { Button, buttonVariants } from '@/components/controls/Button';
 import { Heading } from '@/components/ui/Heading';
@@ -17,13 +16,12 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
                      <Button variant={'secondary'} size={'default'} onClick={() => reset()}>
                         Spróbuj ponownie
                      </Button>
-                     <Link
+                     <a
                         href={navigationPaths.home.path}
                         className={buttonVariants({ size: 'default', variant: 'secondary' })}
-                        onClick={() => reset()}
                      >
                         Home
-                     </Link>
+                     </a>
                   </div>
                </Wrapper>
             </main>

@@ -5,19 +5,20 @@ import { FaAnglesDown } from 'react-icons/fa6';
 import dynamic from 'next/dynamic';
 
 import { Section } from '@/components/ui/Section';
-import { FormatType, ImageType } from '@/app/(default-site)/[...post]/page';
+import { IFormatType, ImageType } from '@/types/model';
 import { Button } from '@/components/controls/Button';
 import { Backdrop } from '@/components/ui/Backdrop';
+import Loading from '@/components/ui/Loading';
 
 import { GalleryImageMap } from './GalleryImageMap';
 
 const Slider = dynamic(() => import('./Slider').then(mod => mod.Slider), {
-   loading: () => <p>loading...</p>,
+   loading: () => <Loading />,
    ssr: false,
 });
 
 export interface IPostGallery {
-   gallery: { id: number; attributes: FormatType }[];
+   gallery: { id: number; attributes: IFormatType }[];
 }
 
 export type SliderDataTypes = ImageType & {
