@@ -8,7 +8,12 @@ interface FetchAPIResponse<T> {
    data?: T;
 }
 
-export const fetchAPI = async <T>(path: string, urlParamsObject = {}, options = {}): Promise<FetchAPIResponse<T>> => {
+export const fetchAPI = async <T>(
+   path: string,
+   urlParamsObject = {},
+   isGenerateMetadata = false,
+   options = {},
+): Promise<FetchAPIResponse<T>> => {
    try {
       const mergedOptions = {
          headers: {
@@ -20,14 +25,17 @@ export const fetchAPI = async <T>(path: string, urlParamsObject = {}, options = 
       const queryString = qs.stringify(urlParamsObject);
       const requestURL = `${BACKEND_URL_API}${path}${queryString ? `?${queryString}` : ''}`;
       const res = await fetch(requestURL, mergedOptions);
-      if (res.status === 404) {
-         throw new Error('Przepraszamy, nie znaleziono danych, spróbuj ponownie później.')
-      }
-      if (res.status === 403 || res.status === 500 || res.status === 401) {
-         throw new Error('Wykryto błąd po stronie serwera, spróbuj ponownie później');
-      }
-      if (!res.ok) {
-         throw new Error('Wykryto nieoczekiwany błąd, spróbuj ponownie poźniej');
+
+      if (!isGenerateMetadata) {
+         if (res.status === 404) {
+            throw new Error('Przepraszamy, nie znaleziono danych, spróbuj ponownie później.');
+         }
+         if (res.status === 403 || res.status === 500 || res.status === 401) {
+            throw new Error('Wykryto błąd po stronie serwera, spróbuj ponownie później');
+         }
+         if (!res.ok) {
+            throw new Error('Wykryto nieoczekiwany błąd, spróbuj ponownie poźniej');
+         }
       }
       const data = await res.json();
       return data;

@@ -14,3 +14,7 @@ export interface ImageType {
 export interface IFormatType {
    formats: { large: ImageType };
 }
+export interface IMetadata {
+   krotki_opis: string
+   tytul: string
+}
