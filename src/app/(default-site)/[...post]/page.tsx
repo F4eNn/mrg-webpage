@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Metadata } from 'next';
 
 import { PostHeader } from '@/components/home/post/Header';
@@ -10,6 +10,8 @@ import { getBase64, getBase64ForAllImg } from '@/utils/blurDataUrl';
 import { fetchAPI } from '@/utils/fetch-api';
 import { IFormatType, IMetadata, RootDataType } from '@/types/model';
 import { FALLBACK_SEO } from '@/constants/fallback-seo';
+import { ErrorBoundary } from '@/components/ui/ErrorBoundary';
+import Loading from '@/components/ui/Loading';
 
 export const revalidate = 86400;
 
@@ -84,7 +86,11 @@ const PostPage = async ({ params }: Props) => {
                {galleryWithBluredUrl ? <PostGallery gallery={galleryWithBluredUrl} /> : null}
             </article>
             <div className="relative col-span-3 mt-16 after:absolute after:-left-5 after:bottom-0 after:h-full after:w-[1px] after:bg-lightGrey/50 after:content-[''] lg:col-auto lg:mt-48">
-               <Aside />
+               <ErrorBoundary>
+                  <Suspense fallback={<Loading />}>
+                     <Aside urlSlug={params.post[1]} />
+                  </Suspense>
+               </ErrorBoundary>
             </div>
          </Wrapper>
       </main>
