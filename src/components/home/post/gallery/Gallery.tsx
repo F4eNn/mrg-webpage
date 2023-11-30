@@ -9,6 +9,7 @@ import { IFormatType, ImageType } from '@/types/model';
 import { Button } from '@/components/controls/Button';
 import { Backdrop } from '@/components/ui/Backdrop';
 import Loading from '@/components/ui/Loading';
+import { Heading } from '@/components/ui/Heading';
 
 import { GalleryImageMap } from './GalleryImageMap';
 
@@ -63,8 +64,14 @@ export const PostGallery = ({ gallery }: IPostGallery) => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [currentIdx]);
    return (
-      <Section id='gallery' className='pt-12'>
-         <div id='gallery-map' className='grid-post-gallery grid-cols-gallery-sm sm:grid-cols-gallery-lg'>
+      <Section id='gallery' className=' space-y-10'>
+         <Heading as='h2' title='Galeria' />
+         <div
+            id='gallery-map'
+            className={`grid-post-gallery   ${
+               gallery.length <= 1 ? 'grid-cols-gallery-lg-single-img' : 'sm:grid-cols-gallery-lg grid-cols-gallery-sm'
+            }`}
+         >
             <GalleryImageMap gallery={gallery} handleOpen={handleOpenSlider} showMore={showMore} />
             {gallery.length > 7 && !showMore && (
                <Button onClick={handleShowMore} variant={'borderOnHover'} className='group relative    '>

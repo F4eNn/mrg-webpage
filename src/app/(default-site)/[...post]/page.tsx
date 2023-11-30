@@ -70,7 +70,6 @@ const PostPage = async ({ params }: Props) => {
 
    const blurderMainPicutre = await getBase64(zdjecie_glowne.data.attributes.formats.large.url);
    const galleryWithBluredUrl = await getBase64ForAllImg(galeria);
-
    return (
       <main className='mb-32'>
          <Wrapper className='grid grid-cols-2 gap-10 lg:grid-cols-4'>
@@ -82,7 +81,7 @@ const PostPage = async ({ params }: Props) => {
                   blurderPicture={blurderMainPicutre}
                />
                <PostContent content={zawartosc_posta} />
-               <PostGallery gallery={galleryWithBluredUrl} />
+               {galleryWithBluredUrl ? <PostGallery gallery={galleryWithBluredUrl} /> : null}
             </article>
             <div className="relative col-span-3 mt-16 after:absolute after:-left-5 after:bottom-0 after:h-full after:w-[1px] after:bg-lightGrey/50 after:content-[''] lg:col-auto lg:mt-48">
                <Aside />

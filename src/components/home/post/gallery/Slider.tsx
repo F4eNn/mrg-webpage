@@ -39,7 +39,7 @@ export const Slider = ({ sliderData, currentIdx, changeImage, closeSlider, galle
                      width={sliderData.width}
                      height={sliderData.height}
                      alt={sliderData.alt ?? 'Zdjęcie przedstawiające wydarzenie opisane w artykule'}
-                     className='h-[300px] w-full rounded-md object-contain phones:h-[400px] md:h-[700px]  '
+                     className='h-[300px] w-max mx-auto rounded-md object-contain phones:h-[400px] md:h-[700px]  '
                      blurDataURL={sliderData.blurDataUrl}
                      placeholder='blur'
                   />

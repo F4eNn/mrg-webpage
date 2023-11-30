@@ -22,6 +22,7 @@ const config: Config = {
          },
          gridTemplateColumns: {
             'gallery-lg': 'repeat(auto-fit, minmax(275px, 1fr))',
+            'gallery-lg-single-img': 'repeat(auto-fit, minmax(275px, 350px))',
             'gallery-sm': '1fr',
             'slider-lg': '100px  1fr 100px',
          },

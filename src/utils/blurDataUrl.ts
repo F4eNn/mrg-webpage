@@ -17,7 +17,12 @@ export const getBase64 = async (image: string) => {
    }
 };
 
-export const getBase64ForAllImg = async (images: IPostData['galeria']): Promise<IPostData['galeria']['data']> => {
+export const getBase64ForAllImg = async (
+   images: IPostData['galeria'],
+): Promise<IPostData['galeria']['data'] | null> => {
+   if (!images.data) {
+      return null;
+   }
    const base64Promises = images.data.map(img => getBase64(img.attributes.formats.large.url));
 
    const base64Result = await Promise.all(base64Promises);

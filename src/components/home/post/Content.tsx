@@ -39,15 +39,18 @@ export const PostContent = ({ content }: IPostContentProps) => {
                      </ul>
                   );
                case 'img':
-                  const { src, alt } = domNode.attribs;
+                  const { src, alt, width, srcset } = domNode.attribs;
+                  const imageArrayUrl = srcset.split(',').filter(Boolean);
+                  const imageUrl = imageArrayUrl.at(-1)?.split(' ')[0];
+                  const widthImg = Number(width.replace('px', '').trim());
                   return (
                      <Image
-                        src={src}
+                        src={imageUrl ?? src}
                         alt={alt}
-                        width={900}
+                        width={widthImg}
                         height={600}
-                        className='max-h-[500px] w-full mx-auto object-cover rounded-sm'
-                        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 95vw'
+                        className='mx-auto max-h-[500px] w-full rounded-sm object-cover'
+                        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 70vw'
                      />
                   );
                case 'a':
@@ -62,6 +65,7 @@ export const PostContent = ({ content }: IPostContentProps) => {
          }
       },
    };
+
    return (
       <Section size={'none'} className='space-y-12 text-lightGrey'>
          {parse(content, options)}
