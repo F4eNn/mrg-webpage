@@ -20,9 +20,8 @@ export interface IMetadata {
 }
 export interface IMetaStrapi {
    pagination: {
-      page: number;
-      pageSize: number;
-      pageCount: number;
+      start: number;
+      limit: number;
       total: number;
    };
 }
