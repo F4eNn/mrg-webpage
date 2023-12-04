@@ -30,4 +30,20 @@
    grid-gap: 1rem;
    grid-auto-flow: dense;
 }
+.custom-underline {
+   position: relative;
+}
+.custom-underline::after {
+   content: '';
+   position: absolute;
+   left: 0;
+   bottom: 0;
+   height: 2px;
+   width: 15%;
+   transition: 0.3s ease;
+   @apply bg-yellow;
+}
 
+.custom-underline:hover::after {
+   width: 100%;
+}
