@@ -15,6 +15,14 @@ export interface IFormatType {
    formats: { large: ImageType };
 }
 export interface IMetadata {
-   krotki_opis: string
-   tytul: string
+   krotki_opis: string;
+   tytul: string;
+}
+export interface IMetaStrapi {
+   pagination: {
+      page: number;
+      pageSize: number;
+      pageCount: number;
+      total: number;
+   };
 }

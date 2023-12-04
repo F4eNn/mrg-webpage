@@ -48,6 +48,10 @@ export const navigationPaths = {
       label: 'Kontakt',
       path: '/kontakt',
    },
+   articles: {
+      label: 'Starsze Artykuły',
+      path: '/artykuly',
+   },
 } as const satisfies Record<PropertyKey, NavItem>;
 
 export const navigationArray = Object.values(navigationPaths);
