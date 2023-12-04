@@ -5,6 +5,7 @@ import { FaArrowRightLong } from 'react-icons/fa6';
 import { Wrapper } from '@/components/ui/Wrapper';
 import { fetchAPI } from '@/utils/fetch-api';
 import { IFormatType } from '@/types/model';
+import { navigationPaths } from '@/constants/navigation';
 
 import { ArticleCard } from '../ui/ArticleCard';
 import { Section } from '../ui/Section';
@@ -19,7 +20,7 @@ export interface IPartialArticleData {
    tytul: string;
    krotki_opis: string;
    slug: string;
-   publishedAt: string;
+   publishedAt: Date;
    zdjecie_glowne: {
       data: {
          id: number;
@@ -66,10 +67,10 @@ export const WeekReview = async () => {
             </div>
             <div className='col-span-2 ml-auto'>
                <Link
-                  href='/'
+                  href={navigationPaths.articles.path}
                   className=' custom-underline colors-300 relative flex w-max items-center gap-3 py-2  text-lg hover:text-black/80 active:scale-95'
                >
-                  <span className=''>Zobacz wszystkie artykuły</span>
+                  <span>Zobacz wszystkie artykuły</span>
                   <FaArrowRightLong />
                </Link>
             </div>
