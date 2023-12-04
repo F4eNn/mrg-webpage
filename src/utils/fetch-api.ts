@@ -4,16 +4,17 @@ import { API_TOKEN, BACKEND_URL_API } from '@/constants/config';
 
 import { getErrorMessage } from './getErrorMessage';
 
-interface FetchAPIResponse<T> {
+interface FetchAPIResponse<T, K = undefined> {
    data?: T;
+   meta?: K;
 }
 
-export const fetchAPI = async <T>(
+export const fetchAPI = async <T, K = undefined>(
    path: string,
    urlParamsObject = {},
    isGenerateMetadata = false,
    options = {},
-): Promise<FetchAPIResponse<T>> => {
+): Promise<FetchAPIResponse<T, K>> => {
    try {
       const mergedOptions = {
          headers: {
