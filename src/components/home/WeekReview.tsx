@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import { FaArrowRightLong } from 'react-icons/fa6';
 
 import { Wrapper } from '@/components/ui/Wrapper';
 import { fetchAPI } from '@/utils/fetch-api';
@@ -9,7 +9,6 @@ import { IFormatType } from '@/types/model';
 import { ArticleCard } from '../ui/ArticleCard';
 import { Section } from '../ui/Section';
 import { Heading } from '../ui/Heading';
-import { Backdrop } from '../ui/Backdrop';
 
 export interface RootDataType<T> {
    id: number;
@@ -37,7 +36,7 @@ export const WeekReview = async () => {
          zdjecie_glowne: { fields: ['formats'] },
       },
       fields: ['tytul', 'krotki_opis', 'slug', 'publishedAt'],
-      pagination: { pageSize: 7 },
+      pagination: { pageSize: 8 },
    };
 
    const { data } = await fetchAPI<RootDataType<IPartialArticleData>[]>(path, urlParamsObject);
@@ -64,20 +63,14 @@ export const WeekReview = async () => {
                      return <ArticleCard key={id} variant={'fresh'} articleData={attributes} />;
                   }
                })}
-               <Link href='/' className='transform-300 relative hover:scale-[1.02] active:scale-100'>
-                  <Image
-                     src='/assets/home/blured-article.webp'
-                     alt=''
-                     width={700}
-                     height={700}
-                     className='h-full max-h-[360px] w-full'
-                  />
-                  <Backdrop className='z-10 bg-black/60' />
-                  <Heading
-                     as='h3'
-                     title='Zobacz wszystkie'
-                     className='absolute left-0 top-0 z-20 grid h-full w-full place-content-center  text-white'
-                  />
+            </div>
+            <div className='col-span-2 ml-auto'>
+               <Link
+                  href='/'
+                  className=' custom-underline colors-300 relative flex w-max items-center gap-3 py-2  text-lg hover:text-black/80 active:scale-95'
+               >
+                  <span className=''>Zobacz wszystkie artykuły</span>
+                  <FaArrowRightLong />
                </Link>
             </div>
          </Wrapper>
