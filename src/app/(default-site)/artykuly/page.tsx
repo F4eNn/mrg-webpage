@@ -1,12 +1,11 @@
 import React from 'react';
 
-import { fetchArticles } from '@/actions/fetch-articles';
 import { IFormatType, IMetaStrapi, RootDataType } from '@/types/model';
 import { Section } from '@/components/ui/Section';
 import { Heading } from '@/components/ui/Heading';
-import { ArticleCard } from '@/components/ui/ArticleCard';
+import { LoadArticles } from '@/components/articles/LoadArticles';
 
-interface ArticlesData {
+export interface ArticlesData {
    tytul: string;
    publishedAt: Date;
    slug: string;
@@ -14,24 +13,17 @@ interface ArticlesData {
       data: RootDataType<IFormatType>;
    };
 }
-export interface FetchResponse extends Array<RootDataType<ArticlesData>> {
+export interface ArticlesFetchResponse extends Array<RootDataType<ArticlesData>> {
    meta: IMetaStrapi;
 }
 
-const page = async () => {
-   const { data } = await fetchArticles();
-
-   if (!data) {
-      return <p className='text-center'>Coś poszło nie tak, spróbuj ponownie później.</p>;
-   }
+const page = () => {
    return (
       <main>
          <Section>
-            <Heading as='h1' title='Nasze Artykuły' className='mb-20 mt-40' />
-            <div className='grid grid-flow-dense grid-cols-4 gap-16 px-5'>
-               {data.map(({ attributes, id }) => (
-                  <ArticleCard variant={'fresh'} key={id} articleData={attributes} />
-               ))}
+            <Heading as='h1' title='Starsze Artykuły' className='mb-20 mt-32 md:mb-36 md:mt-48' />
+            <div className=' grid gap-x-16 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-y-24 px-5 2xl:gap-x-26 2xl:gap-y-28'>
+               <LoadArticles />
             </div>
          </Section>
       </main>
