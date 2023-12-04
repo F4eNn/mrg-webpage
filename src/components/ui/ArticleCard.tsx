@@ -30,12 +30,12 @@ const cardVariants = cva('rounded-sm overflow-hidden  mx-auto bg-white shadow-md
 });
 
 interface ArticleCardProps extends VariantProps<typeof cardVariants>, ComponentProps<'article'> {
-   articleData: IPartialArticleData;
+   articleData: Partial<IPartialArticleData>;
 }
 
 export const ArticleCard = ({ size, variant, className, articleData, ...props }: ArticleCardProps) => {
    const { krotki_opis, publishedAt, slug, tytul, zdjecie_glowne } = articleData;
-   const { alt, url } = zdjecie_glowne.data.attributes.formats.large;
+   const { alt, url } = zdjecie_glowne!.data.attributes.formats.large;
    if (variant === 'fresh') {
       return (
          <Link
@@ -53,7 +53,7 @@ export const ArticleCard = ({ size, variant, className, articleData, ...props }:
                <Backdrop className='z-10 bg-black/40' />
             </div>
             <div className='mb-5 space-y-9 px-4 py-6 md:p-6 '>
-               <CreatedTime publishedAt={publishedAt} isNew={false} />
+               <CreatedTime publishedAt={publishedAt!} isNew={false} />
                <Heading as='h3' title={tytul} className='my-5 line-clamp-2 text-left' />
             </div>
          </Link>
@@ -73,7 +73,7 @@ export const ArticleCard = ({ size, variant, className, articleData, ...props }:
             <Backdrop className='z-10 bg-black/40' />
          </div>
          <div className='space-y-9 px-4  py-6 md:p-6'>
-            <CreatedTime publishedAt={publishedAt} />
+            <CreatedTime publishedAt={publishedAt!} />
             <div className='space-y-7 '>
                <Heading as='h3' title={tytul} className='my-5 line-clamp-2 text-left' />
                <TextDesc className='line-clamp-3 text-left text-lightGrey'>{krotki_opis}</TextDesc>
@@ -94,7 +94,7 @@ export const ArticleCard = ({ size, variant, className, articleData, ...props }:
    );
 };
 
-export const CreatedTime = ({ isNew = true, publishedAt }: { isNew?: boolean; publishedAt: string }) => {
+export const CreatedTime = ({ isNew = true, publishedAt }: { isNew?: boolean; publishedAt: Date }) => {
    const date = new Date(publishedAt);
    const published = date.toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' });
    return (
