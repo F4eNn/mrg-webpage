@@ -13,7 +13,7 @@ import ArrowIcon from '../../../public/assets/share/right-arrow.svg';
 import { Backdrop } from './Backdrop';
 import { IPartialArticleData } from '../home/WeekReview';
 
-const cardVariants = cva('rounded-sm overflow-hidden  mx-auto bg-white shadow-md', {
+const cardVariants = cva('rounded-md overflow-hidden  mx-auto bg-white shadow-md', {
    variants: {
       variant: {
          now: 'flex flex-col justify-between w-full',
