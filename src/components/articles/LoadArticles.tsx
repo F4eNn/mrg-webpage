@@ -15,10 +15,10 @@ export const LoadArticles = () => {
    const [dataArticle, setDataArticle] = useState<RootDataType<ArticlesData>[]>([]);
    const [isFetching, setIsFetching] = useState(false);
    const [hasMore, setHasMore] = useState(false);
+   const [dataStatus, setDataStatus] = useState<'available' | 'unavailable'>('available');
 
    const fetchArticles = async (pageNumber: number) => {
       const path = '/home-posts';
-
       const urlParamsObject = {
          sort: ['publishedAt:desc'],
          populate: {
@@ -32,25 +32,41 @@ export const LoadArticles = () => {
             limit: 10,
          },
       };
-
       const apiUrl = await fetchAPI<ArticlesFetchResponse, IMetaStrapi>(path, urlParamsObject);
       return apiUrl;
    };
+
+   const fetchMoreArticles = async () => {
+      try {
+         setDataStatus('available');
+         setIsFetching(true);
+         const startWithoutFreshArticels = 8;
+         const { data, meta } = await fetchArticles(startWithoutFreshArticels + dataArticle.length);
+         setDataArticle(prev => [...prev, ...(data as ArticlesFetchResponse)]);
+         setHasMore(meta!.pagination.total - startWithoutFreshArticels === dataArticle.length);
+      } catch (err) {
+         setDataStatus('unavailable');
+      } finally {
+         setIsFetching(false);
+      }
+   };
+
    useEffect(() => {
       if (inView) {
-         const fetchMoreArticles = async () => {
-            setIsFetching(true);
-            const startWithoutFreshArticels = 8;
-            const { data, meta } = await fetchArticles(startWithoutFreshArticels + dataArticle.length);
-            setDataArticle(prev => [...prev, ...(data as ArticlesFetchResponse)]);
-
-            setIsFetching(false);
-            setHasMore(meta!.pagination.total - startWithoutFreshArticels === dataArticle.length);
-         };
          fetchMoreArticles();
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [inView]);
+
+   if (dataStatus === 'unavailable') {
+      return (
+         <div className='flex flex-col items-center justify-center gap-5 text-center text-3xl  md:col-span-2 xl:col-span-3 2xl:col-span-4'>
+            <p>Przepraszamy, brak artykułów do wyświetlenia</p>
+            <span>👉👈</span>
+            <p>Spróbuj ponownie później 😥</p>
+         </div>
+      );
+   }
 
    return (
       <>
